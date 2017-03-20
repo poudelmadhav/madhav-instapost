@@ -37,6 +37,9 @@ gem 'devise'
 #Use carrierwave for photo uploading feature
 gem 'carrierwave'
 
+#Use simple form
+gem 'simple_form'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
