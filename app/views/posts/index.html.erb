@@ -14,7 +14,7 @@
       <%= link_to 'View Post', post_path(post.id), class: 'btn btn-info btn-sm' %>
       <% if post.user == current_user %>
         <%= link_to 'Edit Post', edit_post_path(post.id), class: 'btn btn-warning btn-sm' %>
-        <%= link_to 'Delete Post', post_path(post.id), method: :delete, class: 'btn btn-danger btn-sm' %>
+        <%= link_to 'Delete Post', post_path(post.id), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Are you sure?" } %>
       <% end %>
     </div>
 
@@ -22,7 +22,7 @@
       <% post.comments.each do |comment| %>
         <%= link_to comment.user.name, user_path(comment.user_id) %> <%= comment.text %>
         <%if comment.user == current_user %>
-          <%= link_to '', post_comment_path(post_id: post.id, id: comment.id), method: :delete, class: 'cmt-del-btn glyphicon glyphicon-remove' %>
+          <%= link_to '', post_comment_path(post_id: post.id, id: comment.id), method: :delete, title: 'Delete Comment', class: 'cmt-del-btn glyphicon glyphicon-remove', data: { confirm: "Are you sure?" } %>
         <% end %>
         <br>
       <% end %>
