@@ -21,7 +21,7 @@
         </div>  
       </div>
 
-      <span class="count"><%= @user.posts.count %></span> posts
+      <span class="count"><%= pluralize(@user.posts.count, 'post') %></span>
 
     </div>
 

@@ -1,0 +1,26 @@
+<nav>
+  <div class="">
+    <div class = "col-lg-6 col-lg-offset-3">
+      <div class="row">
+        <div class="nav_wrapper">
+
+          <div class="col-xs-6">
+            <span class="pull-left brand"><%= link_to 'Instapost', root_path %></span>
+          </div>
+
+          <!-- <div class="col-xs-6"> -->
+            <% if user_signed_in? %>
+              <span class="nav_links pull-right"><%= link_to 'New Post', new_post_path %></span>
+              <span class="nav_links pull-right"><%= link_to 'Edit Settings', edit_user_registration_path %></span>
+              <span class="nav_links pull-right"><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></span>
+            <% else %>
+              <span class="nav_links pull-right"><%= link_to 'Sign Up', new_user_registration_path %></span>
+              <span class="nav_links pull-right"><%= link_to 'Log In', new_user_session_path %></span>
+            <% end %>
+          <!-- </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
