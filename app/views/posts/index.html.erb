@@ -1,5 +1,4 @@
 <% @posts.each do |post| %>
-  
   <div class="post_box">
 
     <div class="post_header">
@@ -8,22 +7,22 @@
       <span class="timestamp pull-right"><%= distance_of_time_in_words(DateTime.now, post.created_at) %> ago</span>
     </div>
 
-    <%= image_tag post.photo, class: 'photo' %>
-    
     <div class="post_body">
-
-      <%= link_to post.user.name, user_path(post.user_id) %> <%= post.description %>
-
+      <%= image_tag post.photo, class: 'content-photo' %>
+      <%= post.description %>
+      <br>
+      <%= link_to 'View Post', post_path(post.id) %>
+      <% if post.user == current_user %>
+        <%= link_to 'Edit Post', edit_post_path(post.id) %>
+        <%= link_to 'Delete Post', post_path(post.id), method: :delete %>
+      <% end %>
     </div>
 
-    <div class="post_comments">
-
+    <div class="post_comments row">
       <% post.comments.each do |comment| %>
-
-        <%= link_to comment.user.name,  user_path(comment.user_id) %> <%= comment.text %>
-
+        <%= link_to comment.user.name, user_path(comment.user_id) %> <%= comment.text %>
+        <%= link_to 'Delete', post_comment_path(post_id: post.id, id: comment.id), method: :delete, class: 'cmt-del-btn' %><br>
       <% end %>
-
 
       <hr>
 
@@ -34,6 +33,7 @@
         <% end %>
       <% end %>
     </div>
+
   </div>
 
 <% end %>

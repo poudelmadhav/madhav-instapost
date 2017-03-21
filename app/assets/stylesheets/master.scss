@@ -46,7 +46,7 @@ nav {
 }
 
 .post_body{
-  padding: 10px 24px 0px 24px;
+  padding: 10px 0px 10px 0px;
 }
 
 .post_comments {
@@ -104,11 +104,14 @@ nav {
   width: 28px;
 }
 
-.container-body {
-  margin-left: 26%;
-  margin-right: 26%;
-}
-
 .col-xs-6 {
   float: none;
+}
+
+.content-photo {
+  width: 100%;
+}
+
+.cmt-del-btn {
+  float: right;
 }
