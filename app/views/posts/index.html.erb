@@ -5,5 +5,6 @@
   <%= post.description %>
   <% if post.user == current_user %>
     <%= link_to 'Edit Post', edit_post_path(post.id) %>
+    <%= link_to 'Delete Post', post_path(post.id), method: :delete %>
   <% end %>
 <% end %>
