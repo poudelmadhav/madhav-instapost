@@ -1,3 +1,5 @@
+$footer-height: 45px;
+
 body {
   background-color: #FAFAFA;
 }
@@ -115,4 +117,8 @@ nav {
 .cmt-del-btn {
   float: right;
   color: #c7c7c7
+}
+
+.footer {
+  height: $footer-height;
 }
