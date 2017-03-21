@@ -4,12 +4,15 @@
 	</div>
 	<br>
 	<h1 class="username"><%= @post.user.name %></h1>
-	<%= image_tag @post.photo, class: 'content-photo' %>
+	<%= image_tag @post.photo, class: 'content-photo post_box' %>
 	<%= @post.description %>
 </div>
+
+<br>
+
 <% if @post.user == current_user %>
-  <%= link_to 'Edit Post', edit_post_path(@post.id), class: 'btn-warning btn-sm' %>
-  <%= link_to 'Delete Post', post_path(@post.id), method: :delete, class: 'btn-danger btn-sm' %>
+  <%= link_to 'Edit Post', edit_post_path(@post.id), class: 'btn btn-warning btn-sm' %>
+  <%= link_to 'Delete Post', post_path(@post.id), method: :delete, class: 'btn btn-danger btn-sm' %>
 <% end %>
 
 <div class="post_comments row">
