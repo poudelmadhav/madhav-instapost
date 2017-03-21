@@ -6,9 +6,10 @@ class CommentsController < ApplicationController
 	  @post = Post.find(params[:post_id])
 	  @comment = @post.comments.create(comment_params.merge(user_id: current_user.id))
 	  if @comment.valid?
+	  	flash[:success] = "Your comment has been successfully posted!"
 	    redirect_to root_path
 	  else
-	    flash[:alert] = "Invalid attributes."
+	    flash[:alert] = "Invalid attributes. Please fill something!"
 	    redirect_to root_path
 	  end
 	end
@@ -16,6 +17,7 @@ class CommentsController < ApplicationController
 	def destroy
 	  @comment = Comment.find(params[:id])
 	  @comment.destroy
+	  flash[:success] = "Comment has been deleted!"
 	  redirect_to root_path
 	end
 

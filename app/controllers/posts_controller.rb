@@ -13,8 +13,10 @@ class PostsController < ApplicationController
 	def create
 	  @post = current_user.posts.create(post_params)
 	  if @post.valid?
+	  	flash[:success] = "Your photo has been successfully posted!"
 	    redirect_to root_path
 	  else
+	  	flash[:alert] = "Woops! Looks like there has been an error!"
 	    render :new, status: :unprocessable_entity
 	  end
 	end
@@ -27,8 +29,10 @@ class PostsController < ApplicationController
 	  @post = Post.find(params[:id])
 	  @post.update(post_params)
 	  if @post.valid?
+	  	flash[:success] = "Your post has been successfully updated!"
 	    redirect_to root_path
 	  else
+	  	flash[:alert] = "Woops! Looks like there has been an error!"
 	    render :edit, status: :unprocessable_entity
 	  end
 	end
@@ -40,6 +44,7 @@ class PostsController < ApplicationController
 	def destroy
 	  @post = Post.find(params[:id])
 	  @post.destroy
+	  flash[:success] = "The post was successfully deleted!"
 	  redirect_to root_path
 	end
 
