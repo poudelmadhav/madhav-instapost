@@ -1,7 +1,11 @@
-<%= image_tag @post.user.photo %>
-<%= @post.user.name %>
-<%= image_tag @post.photo %>
-<%= @post.description %>
+<div class="row">
+	<div class="col-xs-4">
+		<%= image_tag @post.user.photo,  class: 'prof_pic' %>
+	</div>
+	<%= @post.user.name %>
+	<%= image_tag @post.photo %>
+	<%= @post.description %>
+</div>
 <% if @post.user == current_user %>
   <%= link_to 'Edit Post', edit_post_path(@post.id) %>
   <%= link_to 'Delete Post', post_path(@post.id), method: :delete %>

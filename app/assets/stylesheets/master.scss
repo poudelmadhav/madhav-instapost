@@ -57,3 +57,49 @@ nav {
   color: #a5a7aa;
   font-weight: 500;
 }
+
+.prof_header{
+  height: 100%;
+  padding: 60px 20px 0px;
+  margin-bottom: 45px;
+}
+
+.username {
+  color: #4b4f54;
+  font-weight: 300;
+  font-size: 34px;
+  line-height: 40px;
+}
+
+.count{
+  color: #34373b;
+  font-weight: 600;
+}
+
+.prof_show {
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+}
+
+.prof_post_box {
+  margin-bottom: 50px;
+}
+
+.user_edit_button {
+  margin-top: 25px;
+  border-color: #818488;
+  color: #818488;
+}
+
+.prof_pic {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.prof_pic_small {
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
+}
