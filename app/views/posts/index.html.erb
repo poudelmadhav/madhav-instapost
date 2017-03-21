@@ -10,10 +10,13 @@
   <% end %>
 
   <% post.comments.each do |comment| %>
-	  <p><%= comment.user.name %> <%= comment.text %></p>
+	  <p><%= comment.user.name label: 'madhav'%> <%= comment.text %></p>
+	  <% if comment.user == current_user %>
+	    <%= link_to 'Delete', post_comment_path(post_id: post.id, id: comment.id), method: :delete %>
+	  <% end %>
 	<% end %>
-	
-  <% if user_signed_in? %>
+
+	<% if user_signed_in? %>
 	  <%= simple_form_for Comment.new, url: post_comments_path(post), method: :post do |f| %>
 	    <%= f.input :text, label: 'Comment', placeholder: 'Add a comment...' %>
 	    <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
