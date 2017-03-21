@@ -16,7 +16,7 @@
           </div>
 
           <div class="col-xs-6">
-            <%= link_to 'EDIT PROFILE', edit_user_registration_path(@user), class: 'user_edit_button btn btn-default' if user_signed_in? && @user == current_user %>
+            <%= link_to 'EDIT PROFILE', edit_user_registration_path(@user), class: 'user_edit_button btn btn-default right' if user_signed_in? && @user == current_user %>
           </div>
         </div>  
       </div>

@@ -6,22 +6,25 @@
       <%= link_to post.user.name, user_path(post.user_id) %>
       <span class="timestamp pull-right"><%= distance_of_time_in_words(DateTime.now, post.created_at) %> ago</span>
     </div>
+    <%= image_tag post.photo, class: 'content-photo' %>
 
-    <div class="post_body">
-      <%= image_tag post.photo, class: 'content-photo' %>
+    <div class="post_body row">
       <%= post.description %>
-      <br>
-      <%= link_to 'View Post', post_path(post.id) %>
+      <br><br>
+      <%= link_to 'View Post', post_path(post.id), class: 'btn-info btn-sm' %>
       <% if post.user == current_user %>
-        <%= link_to 'Edit Post', edit_post_path(post.id) %>
-        <%= link_to 'Delete Post', post_path(post.id), method: :delete %>
+        <%= link_to 'Edit Post', edit_post_path(post.id), class: 'btn-warning btn-sm' %>
+        <%= link_to 'Delete Post', post_path(post.id), method: :delete, class: 'btn-danger btn-sm' %>
       <% end %>
     </div>
 
     <div class="post_comments row">
       <% post.comments.each do |comment| %>
         <%= link_to comment.user.name, user_path(comment.user_id) %> <%= comment.text %>
-        <%= link_to 'Delete', post_comment_path(post_id: post.id, id: comment.id), method: :delete, class: 'cmt-del-btn' %><br>
+        <%if comment.user == current_user %>
+          <%= link_to '', post_comment_path(post_id: post.id, id: comment.id), method: :delete, class: 'cmt-del-btn glyphicon glyphicon-remove' %>
+        <% end %>
+        <br>
       <% end %>
 
       <hr>

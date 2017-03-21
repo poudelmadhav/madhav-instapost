@@ -2,11 +2,23 @@
 	<div class="col-xs-4">
 		<%= image_tag @post.user.photo,  class: 'prof_pic' %>
 	</div>
-	<%= @post.user.name %>
-	<%= image_tag @post.photo %>
+	<br>
+	<h1 class="username"><%= @post.user.name %></h1>
+	<%= image_tag @post.photo, class: 'content-photo' %>
 	<%= @post.description %>
 </div>
 <% if @post.user == current_user %>
-  <%= link_to 'Edit Post', edit_post_path(@post.id) %>
-  <%= link_to 'Delete Post', post_path(@post.id), method: :delete %>
+  <%= link_to 'Edit Post', edit_post_path(@post.id), class: 'btn-warning btn-sm' %>
+  <%= link_to 'Delete Post', post_path(@post.id), method: :delete, class: 'btn-danger btn-sm' %>
 <% end %>
+
+<div class="post_comments row">
+  <% @post.comments.each do |comment| %>
+    <%= link_to comment.user.name, user_path(comment.user_id) %> <%= comment.text %>
+    <%if comment.user == current_user %>
+      <%= link_to '', post_comment_path(post_id: post.id, id: comment.id), method: :delete, class: 'cmt-del-btn glyphicon glyphicon-remove' %>
+    <% end %>
+    <br>
+  <% end %>
+  <br>
+</div>
