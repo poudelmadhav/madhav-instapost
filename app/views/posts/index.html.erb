@@ -1,25 +1,39 @@
 <% @posts.each do |post| %>
-  <%= image_tag post.user.photo %>
-  <%= post.user.name %>
-  <%= image_tag post.photo %>
-  <%= post.description %>
-  <%= link_to 'View Post', post_path(post.id) %>
-  <% if post.user == current_user %>
-    <%= link_to 'Edit Post', edit_post_path(post.id) %>
-    <%= link_to 'Delete Post', post_path(post.id), method: :delete %>
-  <% end %>
+  
+  <div class="post_box">
 
-  <% post.comments.each do |comment| %>
-	  <p><%= comment.user.name label: 'madhav'%> <%= comment.text %></p>
-	  <% if comment.user == current_user %>
-	    <%= link_to 'Delete', post_comment_path(post_id: post.id, id: comment.id), method: :delete %>
-	  <% end %>
-	<% end %>
+    <div class="post_header">
+      <%= image_tag post.user.photo, class: 'prof_pic_small' %>
+      <%= link_to post.user.name, user_path(post.user_id) %>
+      <span class="timestamp pull-right"><%= distance_of_time_in_words(DateTime.now, post.created_at) %> ago</span>
+    </div>
 
-	<% if user_signed_in? %>
-	  <%= simple_form_for Comment.new, url: post_comments_path(post), method: :post do |f| %>
-	    <%= f.input :text, label: 'Comment', placeholder: 'Add a comment...' %>
-	    <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
-	  <% end %>
-	<% end %>
+    <%= image_tag post.photo, class: 'photo' %>
+    
+    <div class="post_body">
+
+      <%= link_to post.user.name, user_path(post.user_id) %> <%= post.description %>
+
+    </div>
+
+    <div class="post_comments">
+
+      <% post.comments.each do |comment| %>
+
+        <%= link_to comment.user.name,  user_path(comment.user_id) %> <%= comment.text %>
+
+      <% end %>
+
+
+      <hr>
+
+      <% if user_signed_in? %>
+        <%= simple_form_for Comment.new, url: post_comments_path(post), method: :post do |f| %>
+          <%= f.input :text, label: 'Comment', placeholder: 'Add a comment...' %>
+          <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
 <% end %>
