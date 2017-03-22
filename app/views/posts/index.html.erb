@@ -6,7 +6,7 @@
       <%= link_to post.user.name, user_path(post.user_id) %>
       <span class="timestamp pull-right"><%= distance_of_time_in_words(DateTime.now, post.created_at) %> ago</span>
     </div>
-    <%= image_tag post.photo, class: 'content-photo' %>
+    <%= image_tag post.photo, class: 'photo' %>
 
     <div class="post_body row">
       <%= post.description %>

@@ -4,7 +4,7 @@
 	</div>
 	<br>
 	<h1 class="username"><%= @post.user.name %></h1>
-	<%= image_tag @post.photo, class: 'content-photo post_box' %>
+	<%= image_tag @post.photo, class: 'photo post_box' %>
 	<%= @post.description %>
 </div>
 
@@ -19,7 +19,7 @@
   <% @post.comments.each do |comment| %>
     <%= link_to comment.user.name, user_path(comment.user_id) %> <%= comment.text %>
     <%if comment.user == current_user %>
-      <%= link_to '', post_comment_path(post_id: post.id, id: comment.id), method: :delete, class: 'cmt-del-btn glyphicon glyphicon-remove' %>
+      <%= link_to '', post_comment_path(post_id: @post.id, id: comment.id), method: :delete, class: 'cmt-del-btn glyphicon glyphicon-remove' %>
     <% end %>
     <br>
   <% end %>
