@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :users, only: :show
 
   resources :posts do
-	  resources :comments
-	end
+	resources :comments
+	resources :upvotes, only: :create
+	resources :downvotes, only: :create
+  end
 
   root 'posts#index'  
 end

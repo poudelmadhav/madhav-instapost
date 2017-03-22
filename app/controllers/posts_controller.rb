@@ -47,7 +47,7 @@ class PostsController < ApplicationController
 	  flash[:success] = "The post was successfully deleted!"
 	  redirect_to root_path
 	end
-
+	
 	private
 
 	def is_owner?
