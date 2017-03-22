@@ -34,14 +34,17 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # Use user authetication
 gem 'devise'
 
-#Use carrierwave for photo uploading feature
+# Use carrierwave for photo uploading feature
 gem 'carrierwave'
 
-#Use simple form
+# Use simple form
 gem 'simple_form'
 
-#Use like/unlike gem
+# Use like/unlike gem
 gem 'acts_as_votable', '~> 0.10.0'
+
+# Use font-awesome icons
+gem 'font-awesome-sass', '~> 4.6.2'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
