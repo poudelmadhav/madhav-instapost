@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <span class="post_like">
+    <% if current_user.voted_up_on? post %>
+      <%= link_to '<i class="fa fa-heart" aria-hidden="true"></i>'.html_safe, post_downvotes_path(post.id), method: :post, remote: true %> 
+    <% else %>
+      <%= link_to '<i class="fa fa-heart-o" aria-hidden="true"></i>'.html_safe, post_upvotes_path(post.id), method: :post, remote: true %>
+    <% end %>
+
+    <strong><%= pluralize post.get_likes.size, "like" %></strong>
+  </span>
+<% else %>
+  <span class="post_like">
+    <i class="fa fa-heart-o" aria-hidden="true"></i>  <strong><%= pluralize post.get_likes.size, "like" %></strong>
+  </span>
+<% end %><br>

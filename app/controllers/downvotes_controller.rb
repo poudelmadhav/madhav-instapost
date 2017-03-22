@@ -4,8 +4,7 @@ class DownvotesController < ApplicationController
 	def create
 		 @post = Post.find(params[:post_id])
 		 @post.downvote_from current_user
-		 flash[:success] = "Liked has been removed!"
-		 
+
 		 respond_to do |format|
 		  format.html { redirect_to posts_path }
 		  format.js {}
