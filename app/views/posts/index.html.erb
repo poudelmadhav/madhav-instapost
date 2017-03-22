@@ -23,25 +23,10 @@
         <%= link_to 'Delete Post', post_path(post.id), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Are you sure?" } %>
       <% end %>
     </div>
-
-    <div class="post_comments row">
-      <% post.comments.each do |comment| %>
-        <%= link_to comment.user.name, user_path(comment.user_id) %> <%= comment.text %>
-        <%if comment.user == current_user %>
-          <%= link_to '', post_comment_path(post_id: post.id, id: comment.id), method: :delete, title: 'Delete Comment', class: 'cmt-del-btn glyphicon glyphicon-remove', data: { confirm: "Are you sure?" } %>
-        <% end %>
-        <br>
-      <% end %>
-
-      <% if user_signed_in? %>
-        <hr>
-        <%= simple_form_for Comment.new, url: post_comments_path(post), method: :post do |f| %>
-          <%= f.input :text, label: 'Comment', placeholder: 'Add a comment...' %>
-          <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
-        <% end %>
-      <% end %>
-    </div>
-
+    <!-- comment section -->
+    <span id="comments_container_<%= post.id %>">
+      <%= render partial: 'comments', locals: {post: post} %>
+    </span>
   </div>
 
 <% end %>
