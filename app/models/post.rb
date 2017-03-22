@@ -6,4 +6,6 @@ class Post < ApplicationRecord
 	has_many :comments
 
 	validates :photo, :description, :user_id, presence: true
+
+	acts_as_votable
 end
