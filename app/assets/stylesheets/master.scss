@@ -133,10 +133,6 @@ html, body {
   height: 97%;
 }
 
-.field {
-  padding: 5px;
-}
-
 .post_like {
   .fa {
     font-size: 20px;
@@ -153,4 +149,28 @@ html, body {
 
 .header a{
   color: #4f4f4f;
+}
+
+/*  devise form css  */
+
+.btn {
+  margin: 5px 0px 5px 0px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+textarea,
+select {
+   display: block;
+   padding: 10px 7px;
+   margin: 0 0 24px 0;
+   vertical-align: middle;
+   min-width: 225px;
+  max-width: 100%;
+   font-size: 15px;
+   line-height: 15px;
+  width: 90%;
+  border-radius: 5px;
 }
