@@ -12,12 +12,24 @@
 
           <!-- <div class="col-xs-6"> -->
             <% if user_signed_in? %>
-              <span class="nav_links pull-right"><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></span>
+              <% if current_page?(root_path) %>
+
+                <span class="nav_links pull-right"><%= link_to current_user.name, user_path(current_user.id) %></span>
+
+              <% else %>
+
+                <span class="nav_links pull-right"><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></span>
+
+              <% end %>
+
               <span class="nav_links pull-right"><%= link_to 'New Post', new_post_path %></span>
-              <span class="nav_links pull-right"><%= link_to 'Edit Settings', edit_user_registration_path %></span>
+
             <% else %>
+
               <span class="nav_links pull-right"><%= link_to 'Sign Up', new_user_registration_path %></span>
+
               <span class="nav_links pull-right"><%= link_to 'Log In', new_user_session_path %></span>
+
             <% end %>
           <!-- </div> -->
 
