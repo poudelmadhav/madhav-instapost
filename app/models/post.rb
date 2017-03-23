@@ -3,9 +3,11 @@ class Post < ApplicationRecord
 
 	belongs_to :user
 	
-	has_many :comments
+	has_many :comments, dependent: :destroy
 
 	validates :photo, :description, :user_id, presence: true
+
+	delegate :photo, :name, to: :user, prefix: true
 
 	acts_as_votable
 end

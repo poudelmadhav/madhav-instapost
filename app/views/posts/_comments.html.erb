@@ -1,6 +1,6 @@
 <div class="post_comments row">
 <% post.comments.each do |comment| %>
-  <%= link_to comment.user.name, user_path(comment.user_id), remote: true %> <%= comment.text %>
+  <%= link_to comment.user_name, user_path(comment.user_id), remote: true %> <%= comment.text %>
   <%if comment.user == current_user %>
     <%= link_to '', post_comment_path(post_id: post.id, id: comment.id), remote: true, method: :delete, title: 'Delete Comment', class: 'cmt-del-btn glyphicon glyphicon-remove', data: { confirm: "Are you sure?" } %>
   <% end %>
