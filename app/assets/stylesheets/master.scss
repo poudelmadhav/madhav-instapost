@@ -12,8 +12,13 @@ nav {
 
 .brand {
   font-family: 'Satisfy', cursive;
-  font-size: 26px;
+  font-size: 28px;
   vertical-align: middle;
+}
+
+.head-size {
+  font-size: 28px;
+  vertical-align: middle;  
 }
 
 .nav_links {
@@ -144,4 +149,8 @@ html, body {
 
 .anti-heart {
   color: #a9a9a9;
+}
+
+.header a{
+  color: #4f4f4f;
 }
