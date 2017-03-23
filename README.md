@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+The app is published at:
+http://madhav-instapost.herokuapp.com/
