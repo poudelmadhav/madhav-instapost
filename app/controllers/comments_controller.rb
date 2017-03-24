@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 	  @comment = @post.comments.create(comment_params.merge(user_id: current_user.id))
 	  
 	  respond_to do |format|
-		  format.html { redirect_to post_path }
+		  format.html { redirect_to posts_path }
 		  format.js {}
 		end
 	end
@@ -17,8 +17,8 @@ class CommentsController < ApplicationController
 	  @comment.destroy
 	  
 	  respond_to do |format|
-		  format.html { redirect_to post_path }
-		  format.js {}
+		  format.html { redirect_to posts_path }
+		  format.js { render inline: "location.reload();" }
 		end
 	end
 
