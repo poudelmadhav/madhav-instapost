@@ -36,6 +36,8 @@ gem 'devise'
 
 # Use carrierwave for photo uploading feature
 gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 
 # Use simple form
 gem 'simple_form'
