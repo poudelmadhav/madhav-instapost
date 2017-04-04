@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-	before_action :authenticate_user!, only: [:new, :create]
-	before_action :is_owner?, only: [:edit, :update, :destroy]
+	
 
 	def index
 	  @posts = Post.all.order('created_at DESC').includes(:user, comments: :user).paginate(:page => params[:page], :per_page => 10)
