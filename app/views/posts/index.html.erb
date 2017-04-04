@@ -19,10 +19,10 @@
       <%= post.description %>
       <br><br>
       <%= link_to 'View Post', post_path(post.id), class: 'btn btn-info btn-sm' %>
-      
+      <% if post.user == current_user %>
         <%= link_to 'Edit Post', edit_post_path(post.id), class: 'btn btn-warning btn-sm' %>
         <%= link_to 'Delete Post', post_path(post.id), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Are you sure?" } %>
-      
+      <% end %>
     </div>
     <!-- comment section -->
     <span id="comments_container_<%= post.id %>">
