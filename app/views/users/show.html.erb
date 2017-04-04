@@ -3,7 +3,7 @@
   <div class="row">
 
     <div class="col-xs-4">
-      <%= image_tag @user.photo, class: 'prof_pic' %>
+      <%= cl_image_tag @user.photo, class: 'prof_pic' %>
     </div>
 
     <div class="col-xs-8">
@@ -37,7 +37,7 @@
     <% @user.posts.each do |post| %>
 
         <div class="col-xs-6">
-          <%= image_tag post.photo, class: 'prof_show' %>
+          <%= cl_image_tag post.photo, class: 'prof_show' %>
         </div>
 
     <% end %>
