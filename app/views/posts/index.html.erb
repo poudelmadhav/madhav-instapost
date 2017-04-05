@@ -3,7 +3,7 @@
   <div class="post_box">
 
     <div class="post_header">
-      <%= cl_image_tag post.user_photo, class: 'prof_pic_small' %>
+      <%= link_to (cl_image_tag post.user_photo), user_path(post.user_id), class: 'prof_pic_small' %>
       <%= link_to post.user_name, user_path(post.user_id) %>
       <span class="timestamp pull-right"><%= distance_of_time_in_words(DateTime.now, post.created_at) %> ago</span>
     </div>
