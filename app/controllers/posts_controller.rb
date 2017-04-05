@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 	  	flash[:success] = "Your photo has been successfully posted!"
 	    redirect_to root_path
 	  else
-	  	flash[:alert] = "Woops! Looks like there has been an error!"
+	  	flash[:alert] = "#{@post.errors.full_messages.join(',')}"
 	    render :new, status: :unprocessable_entity
 	  end
 	end
