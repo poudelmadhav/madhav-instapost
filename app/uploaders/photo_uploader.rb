@@ -6,6 +6,11 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   include Cloudinary::CarrierWave
 
+  # Use original_filename in Cloudinary
+  def public_id
+   Cloudinary::PreloadedFile.split_format(original_filename).first + "_" + Cloudinary::Utils.random_public_id[0,6]
+  end
+
   # Choose what kind of storage to use for this uploader:
   # storage :file
   # storage :fog
@@ -38,9 +43,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_whitelist
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_whitelist
+    %w(jpg jpeg gif png)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
