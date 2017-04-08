@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 	def create
 	  @post = current_user.posts.create(post_params)
 	  if @post.valid?
-	  	flash[:success] = "Your photo has been successfully posted!"
+	  	flash[:success] = "Your post has been successfully posted!"
 	    redirect_to root_path
 	  else
 	  	flash[:alert] = "#{@post.errors.full_messages.join(',')}"
