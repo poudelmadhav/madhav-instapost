@@ -5,7 +5,7 @@ class Post < ApplicationRecord
 	
 	has_many :comments, dependent: :destroy
 
-	validates :photo, :description, :user_id, presence: true
+	validates :description, :user_id, presence: true
 
 	delegate :photo, :name, to: :user, prefix: true
 
