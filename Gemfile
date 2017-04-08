@@ -33,6 +33,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use user authetication
 gem 'devise'
+gem 'inherited_resources', '~> 1.7'
 
 # Use carrierwave for photo uploading feature
 gem 'carrierwave'
