@@ -1,0 +1,32 @@
+<% @posts.each do |post| %>
+  <div class="post_box">
+
+    <div class="post_header">
+      <%= link_to (cl_image_tag post.user_photo), user_path(post.user_id), class: 'prof_pic_small' %>
+      <%= link_to post.user_name, user_path(post.user_id) %>
+      <span class="timestamp pull-right"><%= distance_of_time_in_words(DateTime.now, post.created_at) %> ago</span>
+    </div>
+    <%= cl_image_tag post.photo, class: 'photo' %>
+
+    <div class="post_body row">
+      <!-- Like button and number of likes started -->
+      <span id="likes_container_<%= post.id %>">
+        <%= render partial: 'likes', locals: {post: post} %>
+      </span>
+      <!-- like Button and number of likes ended -->
+
+      <%= post.description %>
+      <br><br>
+      <%= link_to 'View Post', post_path(post.id), class: 'btn btn-info btn-sm' %>
+      <% if post.user == current_user %>
+        <%= link_to 'Edit Post', edit_post_path(post.id), class: 'btn btn-warning btn-sm' %>
+        <%= link_to 'Delete Post', post_path(post.id), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Are you sure?" } %>
+      <% end %>
+    </div>
+    <!-- comment section -->
+    <span id="comments_container_<%= post.id %>">
+      <%= render partial: 'comments', locals: {post: post} %>
+    </span>
+  </div>
+
+<% end %>
