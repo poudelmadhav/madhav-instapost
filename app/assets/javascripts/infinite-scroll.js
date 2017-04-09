@@ -5,7 +5,7 @@ $(document).on('ready page:load', function () {
       var more_posts_url = $('.pagination a.next_page').attr('href');
       if (!isLoading && more_posts_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60) {
         isLoading = true;
-        $('.pagination').html('<img src="/assets/loader.gif" alt="Loading..." title="Loading..." />')
+        $('.pagination').html('<img src="http://res.cloudinary.com/instapost/image/upload/v1491743191/loader_wpyfow.gif" alt="Loading..." title="Loading..." />')
         $.getScript(more_posts_url).done(function (data,textStatus,jqxhr) {
           isLoading = false;
         }).fail(function() {
