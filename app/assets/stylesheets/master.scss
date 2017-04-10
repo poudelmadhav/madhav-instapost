@@ -197,3 +197,10 @@ select {
   height: 7%;
   width: 7%;
 }
+
+/* mobile responsive css */
+@media only screen and (max-width: 768px) {
+    .nav_links {
+        margin: 0px 12px;
+    }
+}
