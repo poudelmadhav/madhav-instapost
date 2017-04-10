@@ -25,7 +25,7 @@ nav {
   vertical-align: middle;
   font-size: 16px;
   font-weight: 500;
-  margin: 0 12px;
+  margin: 0 20px;
 }
 
 .nav_wrapper {
@@ -182,4 +182,11 @@ select {
 #infinite-scrolling img{
   height: 7%;
   width: 7%;
+}
+
+/* mobile responsive css */
+@media only screen and (max-width: 768px) {
+    .nav_links {
+        margin: 0px 7px;
+    }
 }
