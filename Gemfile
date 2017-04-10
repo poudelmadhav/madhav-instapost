@@ -49,7 +49,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'font-awesome-sass', '~> 4.6.2'
 
 # Use Pagination
-gem 'will_paginate', '~> 3.0.5'
+gem 'will_paginate'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
