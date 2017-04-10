@@ -16,6 +16,10 @@ nav {
   vertical-align: middle;
 }
 
+.logo a {
+  text-decoration: none;
+}
+
 .head-size {
   font-size: 28px;
   vertical-align: middle;  
@@ -26,6 +30,10 @@ nav {
   font-size: 16px;
   font-weight: 500;
   margin: 0 20px;
+}
+
+.nav_links a {
+  text-decoration: none;
 }
 
 .nav_wrapper {

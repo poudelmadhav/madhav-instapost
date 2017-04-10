@@ -5,8 +5,11 @@
         <div class="nav_wrapper">
 
           <div class=".col-xs-6 .col-sm-3">
-            <span class="pull-left head-size">
-              <i class="fa fa-instagram" aria-hidden="true"></i> | <strong><span class="brand"><%= link_to 'Instapost', root_path %></span></strong>
+            <span class="pull-left head-size logo">
+              <%= link_to root_path do %>
+                <i class="fa fa-instagram" aria-hidden="true"></i> | 
+              <% end %>
+              <strong><span class="brand"><%= link_to 'Instapost', root_path %></span></strong>
             </span>
           </div>
 
