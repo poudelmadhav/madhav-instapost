@@ -17,7 +17,10 @@
             <% if user_signed_in? %>
               <% if !current_page?(user_path(current_user.id)) %>
 
-                <span class="nav_links pull-right"><%= link_to current_user.name.split[0], user_path(current_user.id) %></span>
+                <span class="nav_links pull-right header_pic_small"><%= link_to user_path(current_user.id) do %>
+                  <%= cl_image_tag current_user.photo, alt: current_user.name.split[0], title: current_user.name.split[0] %>
+                  <% end %>
+                </span>
 
               <% else %>
 
