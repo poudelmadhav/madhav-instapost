@@ -112,18 +112,21 @@ nav {
   border-radius: 50%;
   height: 150px;
   width: 150px;
+  object-fit: cover;
 }
 
 .prof_pic_small img {
   border-radius: 50%;
   height: 28px;
   width: 28px;
+  object-fit: cover;
 }
 
 .header_pic_small img{
   border-radius: 10px;
   height: 36px;
   width: 36px;
+  object-fit: cover;
 }
 
 .cmt-del-btn {

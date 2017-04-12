@@ -13,11 +13,11 @@
       <div class="user_header">
 
         <div class="row">
-          <div class="col-xs-6">
+          <div class="user_photo">
             <h1 class = "username"><%= @user.name %></h1>
           </div>
 
-          <div class="col-xs-6">
+          <div class="edit_profile">
             <%= link_to 'EDIT PROFILE', edit_user_registration_path(@user), class: 'user_edit_button btn btn-default right' if user_signed_in? && @user == current_user %>
           </div>
         </div>  
