@@ -1,27 +1,34 @@
-<div class="row">
-	<div class="col-xs-4">
-		<%= cl_image_tag @post.user.photo,  class: 'prof_pic' %>
-	</div>
-	<br>
-	<h1 class="username"><%= @post.user.name %></h1>
-	<%= cl_image_tag @post.photo, class: 'photo post_box' %>
-	<%= @post.description %>
+<div class="view_header">
+
+  <div class="row">
+
+  	<div class="col-xs-5">
+     <%= link_to user_path(@post.user_id) do %>
+  		  <%= cl_image_tag @post.user.photo,  class: 'prof_pic' %>
+      <% end %>
+  	</div>
+    <div class="col-xs-7">
+    <%= link_to user_path(@post.user_id) do %>
+  	 <h1 class="username"><%= @post.user.name %></h1>
+    <% end %>
+    <span class="timestamp"><%= distance_of_time_in_words(DateTime.now, @post.created_at) %> ago</span>
+    </div>
+  </div>
 </div>
 
-<br>
+<div class="prof_post_box">
+  <%= cl_image_tag @post.photo, class: 'photo post_box' %>
+  	<%= @post.description %>
 
-<% if @post.user == current_user %>
-  <%= link_to 'Edit Post', edit_post_path(@post.id), class: 'btn btn-warning btn-sm' %>
-  <%= link_to 'Delete Post', post_path(@post.id), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Are you sure?" } %>
-<% end %>
-
-<div class="post_comments row">
-  <% @post.comments.each do |comment| %>
-    <%= link_to comment.user.name, user_path(comment.user_id) %> <%= comment.text %>
-    <%if comment.user == current_user %>
-      <%= link_to '', post_comment_path(post_id: @post.id, id: comment.id), method: :delete, class: 'cmt-del-btn glyphicon glyphicon-remove' %>
-    <% end %>
-    <br>
-  <% end %>
   <br>
+
+  <% if @post.user == current_user %>
+    <%= link_to 'Edit Post', edit_post_path(@post.id), class: 'btn btn-warning btn-sm' %>
+    <%= link_to 'Delete Post', post_path(@post.id), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Are you sure?" } %>
+  <% end %>
+
+  <span id="comments_container_<%= @post.id %>">
+    <%= render partial: 'comments', locals: {post: @post} %>
+  </span>
+
 </div>
