@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 	  
 	  respond_to do |format|
 		  format.html { redirect_to posts_path }
-		  format.js { render inline: "location.reload();" }
+		  format.js {}
 		end
 	end
 
