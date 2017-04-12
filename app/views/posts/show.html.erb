@@ -1,4 +1,4 @@
-<div class="view_header">
+<div class="prof_header">
 
   <div class="row">
 
@@ -17,8 +17,12 @@
 </div>
 
 <div class="prof_post_box">
-  <%= cl_image_tag @post.photo, class: 'photo post_box' %>
-  	<%= @post.description %>
+  <%= cl_image_tag @post.photo, class: 'photo' %>
+  <br /><br />
+  <span id="likes_container_<%= @post.id %>">
+    <%= render partial: 'likes', locals: {post: @post} %>
+  </span>
+  <%= @post.description %>
 
   <br>
 
