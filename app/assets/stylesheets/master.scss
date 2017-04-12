@@ -92,8 +92,9 @@ nav {
 }
 
 .prof_show {
-  width: 100%;
-  height: 100%;
+  object-fit: cover;
+  width: 190px;
+  height: 200px;
   margin-top: 30px;
 }
 
@@ -206,5 +207,53 @@ select {
 @media only screen and (max-width: 768px) {
     .nav_links {
         margin: 0px 10px;
+    }
+
+    .prof_show {
+      width: 60px;
+      height: 70px;
+      margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 1160px) {
+  .prof_show {
+      width: 160px;
+      height: 150px;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+  .prof_show {
+      width: 260px;
+      height: 260px;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+  .prof_show {
+      width: 200px;
+      height: 210px;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+  .prof_show {
+      width: 150px;
+      height: 150px;
+    }
+}
+
+@media only screen and (max-width: 458px) {
+  .prof_show {
+      width: 130px;
+      height: 125px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+  .prof_show {
+      width: 100%;
+      height: 100%;
     }
 }
