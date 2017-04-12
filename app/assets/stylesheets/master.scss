@@ -127,7 +127,11 @@ nav {
 
 .cmt-del-btn {
   float: right;
-  color: #c7c7c7
+  color: #c7c7c7;
+}
+
+a:hover, a:focus {
+  text-decoration: none;
 }
 
 #wrap {
@@ -196,10 +200,6 @@ select {
 #infinite-scrolling img{
   height: 7%;
   width: 7%;
-}
-
-.glyphicon-remove a:hover {
-  text-decoration: none;
 }
 
 /* mobile responsive css */
