@@ -51,6 +51,9 @@ gem 'font-awesome-sass', '~> 4.6.2'
 # Use Pagination
 gem 'will_paginate'
 
+# Use simplified pagination
+gem 'kaminari', '~> 0.16.3'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
