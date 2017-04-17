@@ -56,6 +56,10 @@ gem 'will_paginate', '~> 3.0.12'
 # Use simplified pagination
 gem 'kaminari', '~> 0.16.3'
 
+# to define web server
+gem 'unicorn'
+gem 'thin'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
