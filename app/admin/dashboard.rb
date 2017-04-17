@@ -10,7 +10,6 @@ ActiveAdmin.register_page "Dashboard" do
                 link_to user.name, [:admin, user]
             end
             column :email
-            column :created_at
             column :last_sign_in_at
         end
     end

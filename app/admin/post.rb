@@ -8,8 +8,8 @@ ActiveAdmin.register Post do
 	index do
 	  selectable_column
 	  column :id, :sortable => :id
-	  column :photo do |post|
-	  	cl_image_tag(post.photo)
+	  column :photo do |prof_pic|
+	  	cl_image_tag(prof_pic.photo)
 	  end
 	  column :description
 	  column :user, :sortable => :user
