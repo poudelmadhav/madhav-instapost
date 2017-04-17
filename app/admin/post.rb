@@ -1,4 +1,5 @@
 ActiveAdmin.register Post do
+	menu priority: 3
 	permit_params :user, :photo, :description
 	
 	filter :user
