@@ -3,11 +3,29 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
-      end
+    section "Recent Users", :priority => 1 do
+        table_for User.order("id DESC").limit(5) do
+            column :id
+            column "Name", :name do |user|
+                link_to user.name, [:admin, user]
+            end
+            column :email
+            column :created_at
+            column :last_sign_in_at
+        end
+    end
+
+    section "Recent Posts", :priority => 1 do
+        table_for Post.order("id DESC").limit(5) do
+            column :id
+            column "Name", :post do |post|
+                link_to post.user_name, [:admin, post]
+            end
+            column :photo do |post|
+                cl_image_tag(post.photo)
+            end
+            column :description
+        end
     end
 
     # Here is an example of a simple dashboard with columns and panels.

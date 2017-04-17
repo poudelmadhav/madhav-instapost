@@ -7,12 +7,12 @@ ActiveAdmin.register Post do
 
 	index do
 	  selectable_column
-	  column :id
+	  column :id, :sortable => :id
 	  column :photo do |post|
 	  	cl_image_tag(post.photo)
 	  end
 	  column :description
-	  column :user
+	  column :user, :sortable => :user
 	  actions
 	end
 end
