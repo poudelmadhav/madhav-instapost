@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use user authetication
+gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 gem 'inherited_resources', '~> 1.7'
 
@@ -49,7 +50,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'font-awesome-sass', '~> 4.6.2'
 
 # Use Pagination
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.0.12'
 
 # Use simplified pagination
 gem 'kaminari', '~> 0.16.3'
