@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
     section "Recent Users", :priority => 1 do
-        table_for User.order("id DESC").limit(5) do
+        table_for User.order("last_sign_in_at DESC").limit(5) do
             column :id
             column "Name", :name do |user|
                 link_to user.name, [:admin, user]
