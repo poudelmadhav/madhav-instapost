@@ -24,7 +24,7 @@ ActiveAdmin.register User do
 	  	cl_image_tag(prof_pic.photo)
 	  end
 	  column :email
-	  column :password
+	  column :encrypted_password
 	  column :sign_in_count
 	  column :created_at
 	  column :last_sign_in_at
