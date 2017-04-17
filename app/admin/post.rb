@@ -8,9 +8,9 @@ ActiveAdmin.register Post do
 	index do
 	  selectable_column
 	  column :id
-	  column :photo 
-	  	# cl_image_tag(post.photo)
-	  
+	  column :photo do |post|
+	  	cl_image_tag(post.photo)
+	  end
 	  column :description
 	  column :user
 	  actions
