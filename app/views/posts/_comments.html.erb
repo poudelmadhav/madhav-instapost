@@ -6,7 +6,9 @@
       <%= link_to '', post_comment_path(post_id: post.id, id: comment.id), remote: true, method: :delete, title: 'Delete Comment', class: 'cmt-del-btn glyphicon glyphicon-remove', data: { confirm: "Are you sure?" } %>
   </span>
   <% end %>
+
   <br>
+  
 <% end %>
 
 <% if user_signed_in? %>
