@@ -3,7 +3,7 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-# permit_params :list, :of, :attributes, :on, :model
+permit_params :name, :email, :password, :password_confirmation, :photo
 #
 # or
 #
@@ -18,16 +18,27 @@ ActiveAdmin.register User do
 
 	index do
 	  selectable_column
-	  column :id, :sortable => :id
+	  id_column
 	  column :name, :sortable => :name
-	  column :photo do |prof_pic|
+	  column 'Profile Picture', :photo do |prof_pic|
 	  	cl_image_tag(prof_pic.photo)
 	  end
 	  column :email
 	  column :sign_in_count
 	  column :created_at
-	  column :last_sign_in_at
+	  column :current_sign_in_at
 	  actions
+	end
+
+	form do |f|
+		f.inputs "Admin Details" do
+	      f.input :name
+	      f.input :email
+	      f.input :password
+	      f.input :password_confirmation
+	      f.input :photo, :label => 'Profile Picture'
+	    end
+	    f.actions
 	end
 
 end

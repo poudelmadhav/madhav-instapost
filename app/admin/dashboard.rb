@@ -4,12 +4,13 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
     section "Recent Users", :priority => 1 do
-        table_for User.order("last_sign_in_at DESC").limit(5) do
+        table_for User.order("current_sign_in_at DESC").limit(5) do
             column :id
             column "Name", :name do |user|
                 link_to user.name, [:admin, user]
             end
             column :email
+            column :created_at
             column :last_sign_in_at
         end
     end
@@ -18,10 +19,12 @@ ActiveAdmin.register_page "Dashboard" do
         table_for Post.order("id DESC").limit(5) do
             column :id
             column "Name", :post do |post|
-                link_to post.user_name, [:admin, post]
+                link_to post.user_name,  admin_user_path(post.user_id)
             end
             column :photo do |post|
-                cl_image_tag(post.photo)
+                link_to [:admin, post] do
+                    cl_image_tag(post.photo)
+                end
             end
             column :description
         end
