@@ -123,6 +123,10 @@ GEM
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
+    jquery-fileupload-rails (0.4.7)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      sass (>= 3.2)
     jquery-rails (4.2.2)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -209,6 +213,10 @@ GEM
     simple_form (3.4.0)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    simple_form_fancy_uploads (0.2.0)
+      carrierwave
+      rails (>= 4.0.0)
+      simple_form (~> 3.1)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -268,6 +276,7 @@ DEPENDENCIES
   font-awesome-sass (~> 4.6.2)
   inherited_resources (~> 1.7)
   jbuilder (~> 2.5)
+  jquery-fileupload-rails
   jquery-rails
   kaminari (~> 0.16.3)
   listen (~> 3.0.5)
@@ -276,6 +285,7 @@ DEPENDENCIES
   rails (~> 5.0.2)
   sass-rails (~> 5.0)
   simple_form
+  simple_form_fancy_uploads
   spring
   spring-watcher-listen (~> 2.0.0)
   thin
@@ -290,4 +300,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.14.5
+   1.14.6

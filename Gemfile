@@ -44,6 +44,9 @@ gem 'cloudinary'
 # Use simple form
 gem 'simple_form'
 
+# Use custom inputs to get image previews
+gem 'simple_form_fancy_uploads'
+
 # Use like/unlike gem
 gem 'acts_as_votable', '~> 0.10.0'
 
@@ -59,6 +62,9 @@ gem 'kaminari', '~> 0.16.3'
 # to define web server
 gem 'unicorn'
 gem 'thin'
+
+# Jquery file upload
+gem "jquery-fileupload-rails"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
