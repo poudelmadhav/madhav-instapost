@@ -1,5 +1,6 @@
 <%= simple_form_for @post do |f| %>
-  <%= f.input :photo, required: false %>
+  <%= f.input :photo, required: true %>
+  <%= f.hidden_field :photo_cache %>
   <%= f.input :description %>
   <%= f.submit 'Post', class: 'btn btn-success btn-block' %>
 <% end %>
