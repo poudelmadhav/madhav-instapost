@@ -53,7 +53,7 @@ gem 'acts_as_votable', '~> 0.11.1'
 gem 'font-awesome-sass', '~> 4.6.2'
 
 # Use Pagination
-gem 'will_paginate', '~> 3.0.12'
+gem 'will_paginate'
 
 # Use simplified pagination
 gem 'kaminari'
