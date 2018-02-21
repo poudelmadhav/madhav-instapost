@@ -17,20 +17,21 @@
             <h1 class = "username"><%= @user.name %></h1>
           </div>
 
-          <div class="edit_profile">
+          <div class="edit_profile mp-margin">
             <%= link_to 'EDIT PROFILE', edit_user_registration_path(@user), class: 'user_edit_button btn btn-default right' if user_signed_in? && @user == current_user %>
+          </div>
+          <div id="follow_container_<%= @user.id %>" class="text-center">
+            <%= render partial: 'follow', locals: {user: @user} %>
           </div>
         </div>  
       </div>
-
-      <span class="count"><%= pluralize(@user.posts.count, 'post') %></span>
 
     </div>
 
   </div>
 
 </div>
-
+<hr>
 
 <div class="prof_post_box">
 

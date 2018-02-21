@@ -1,0 +1,1 @@
+$('#follow_container_<%= @user.id %>').html("<%= escape_javascript render partial: '/users/follow', locals: { user: @user } %>");

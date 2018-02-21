@@ -1,3 +1,35 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-stats {
+  margin: 0 auto 10px;
+  padding: 0;
+  display: table;
+  li {
+    cursor: pointer;
+    width: 120px;
+    padding: 5px 0;
+    border-right: 1px solid #ddd;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #777;
+    .number-label {
+      font-size: 12px;
+    }
+    .number-value {
+      font-size: 18px;
+    }
+    &:last-child {
+      border: none;
+    }
+    &:hover {
+      color: #1e1e1e;
+    }
+  }
+}
+
+.mp-margin {
+  margin-bottom: 20px;
+}

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :users, only: :show
 
+  resources :follows, only: [:create, :destroy] 
+
   resources :posts do
 	resources :comments
 	resources :upvotes, only: :create
