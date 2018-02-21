@@ -1,4 +1,4 @@
-class ActsAsVotableMigration < ActiveRecord::Migration
+class ActsAsVotableMigration < ActiveRecord::Migration[4.2]
   def self.up
     create_table :votes do |t|
 
@@ -10,11 +10,6 @@ class ActsAsVotableMigration < ActiveRecord::Migration
       t.integer :vote_weight
 
       t.timestamps
-    end
-
-    if ActiveRecord::VERSION::MAJOR < 4
-      add_index :votes, [:votable_id, :votable_type]
-      add_index :votes, [:voter_id, :voter_type]
     end
 
     add_index :votes, [:voter_id, :voter_type, :vote_scope]

@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -8,11 +7,11 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.1.4'
 # Use pg as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.18'
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,7 +29,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 # Use bootstrap
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.3.7'
 
 # Use user authetication
 gem 'activeadmin', github: 'activeadmin'
@@ -48,7 +47,7 @@ gem 'simple_form'
 gem 'simple_form_fancy_uploads'
 
 # Use like/unlike gem
-gem 'acts_as_votable', '~> 0.10.0'
+gem 'acts_as_votable', '~> 0.11.1'
 
 # Use font-awesome icons
 gem 'font-awesome-sass', '~> 4.6.2'
@@ -57,7 +56,7 @@ gem 'font-awesome-sass', '~> 4.6.2'
 gem 'will_paginate', '~> 3.0.12'
 
 # Use simplified pagination
-gem 'kaminari', '~> 0.16.3'
+gem 'kaminari'
 
 # to define web server
 gem 'unicorn'

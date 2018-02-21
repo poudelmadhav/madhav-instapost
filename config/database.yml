@@ -2,18 +2,18 @@ default: &default
       adapter: postgresql
       encoding: unicode
       pool: 5
-      username: postgres
-      password: password
+      username: madhav
+      password: madhav123
       host:     <%= ENV['IP'] %>
 
 development:
   <<: *default
-  database: ideator_development
+  database: instapost_development
 
 test:
   <<: *default
-  database: ideator_test
+  database: instapost_test
 
 production:
   <<: *default
-  database: ideator_production
+  database: instapost_production
