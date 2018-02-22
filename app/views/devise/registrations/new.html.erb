@@ -25,10 +25,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="field">
+  <div  id="pictureInput" class="field mp-margin">
     <%= f.label 'Profile Picture' %><br>
     <%= f.file_field :photo %>
-  </div>  
+  </div>
+
+  <div id="target-photo"></div>  
 
   <div class="actions">
     <%= f.submit "Sign up", class: 'btn btn-success' %>
@@ -36,3 +38,22 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<!-- This is needed for image preview -->
+<script type="text/javascript">
+  $(function() {
+    $('#pictureInput').on('change', function(event) {
+      var files = event.target.files;
+      var image = files[0]
+      var reader = new FileReader();
+      reader.onload = function(file) {
+        var img = new Image();
+        console.log(file);
+        img.src = file.target.result;
+        $('#target-photo').html(img);
+      }
+      reader.readAsDataURL(image);
+      console.log(files);
+    });
+  });
+</script>

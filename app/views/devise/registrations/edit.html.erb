@@ -35,8 +35,12 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
-  <div class="field">
+  <div id="pictureInput" class="field">
     <%= f.label 'Profile Picture' %><br>
+    <% if current_user.photo? %>
+      <span id="target-photo" class="header_pic_edit"><%= cl_image_tag current_user.photo, class: 'mp-margin' %></span><br>
+    <%= f.label 'Change Profile Picture' %><br>
+    <% end %>
     <%= f.file_field :photo %>
   </div>
 
@@ -50,3 +54,22 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+<!-- This is needed for image preview -->
+<script type="text/javascript">
+  $(function() {
+    $('#pictureInput').on('change', function(event) {
+      var files = event.target.files;
+      var image = files[0]
+      var reader = new FileReader();
+      reader.onload = function(file) {
+        var img = new Image();
+        console.log(file);
+        img.src = file.target.result;
+        $('#target-photo').html(img);
+      }
+      reader.readAsDataURL(image);
+      console.log(files);
+    });
+  });
+</script>
