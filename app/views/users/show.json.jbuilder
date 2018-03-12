@@ -8,3 +8,13 @@ json.posts do
 		json.comment post.comments, :id, :post_id, :user_id, :text
 	end
 end
+json.following_relationships do
+  json.array! @user.following_relationships do |following_relationship|
+    json.user following_relationship.followed
+  end
+end
+json.followed_relationships do
+  json.array! @user.followed_relationships do |followed_relationship|
+    json.user followed_relationship.follower
+  end
+end

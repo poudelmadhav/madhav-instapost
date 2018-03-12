@@ -46,3 +46,10 @@
   height: 36%;
   width: 36%;
 }
+
+.follow_pic_small img {
+  border-radius: 50%;
+  height: 45px;
+  width: 70px;
+  object-fit: cover;
+}

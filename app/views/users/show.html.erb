@@ -1,14 +1,14 @@
 <div class="prof_header">
 
-  <div class="row">
+  <div class="row text-center">
 
-    <div class="col-xs-3">
+    <div class="col-sm-3">
       <%= cl_image_tag @user.photo, class: 'prof_pic' %>
     </div>
 
-    <div class="col-xs-3"></div>
+    <div class="col-sm-3"></div>
 
-    <div class="col-xs-6">
+    <div class="col-sm-6">
 
       <div class="user_header">
 
@@ -34,24 +34,23 @@
 <hr>
 
 <div class="prof_post_box">
-  <div class="row">
-    <div id="user-posts"></div>
-  </div>
+    <div id="all-user-posts"></div>
 </div>
 
 <script type="text/javascript">
   $(function(){
+    let userData = {};
     let user_id = <%= @user.id %>;
     $.ajax({
       url: '/users/' + user_id + '.json',
       type: 'GET'
     })
     .done(function(data) {
-      console.log(data);
+      userData = data;
       displayPosts(data);
     });
     function displayPosts(data) {
-      let container = $("#user-posts");
+      let container = $("#all-user-posts");
       let htmlString = "";
       container.empty();
       if (data["posts"].length == 0) {
@@ -66,6 +65,67 @@
         });
       }
       container.append(htmlString);
+    }
+    $('#user-posts').on('click', function(e){
+      $('#all-user-posts').empty();
+      displayPosts(userData);
+    });
+    $('#user-following').on('click', function(e){
+      $('#all-user-posts').empty();
+      getFollowing();
+    });
+    $('#user-followers').on('click', function(e){
+      $('#all-user-posts').empty();
+      getFollowers();
+    });
+    function getFollowing(){
+      let htmlString = "";
+      if(userData.following_relationships == ""){
+        htmlString += `<div class="alert alert-info text-center"><p>This user has not followed any users yet.</p></div>`;
+      } else {
+          userData.following_relationships.forEach(function(userInfo){
+            htmlString += `
+                          <div class="row">
+                            <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1">
+                              <div class="panel panel-success">
+                                <div class="panel-body">
+                                  <a href="/users/${userInfo["user"]["id"]}">
+                                    <div class="row follow_pic_small">
+                                      <img class="col-xs-4" src=${userInfo["user"]["photo"]["url"] == null ? "https://goo.gl/2wWxZy" : userInfo["user"]["photo"]["url"]}><p class="col-xs-4">${userInfo["user"]["name"]}</p>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>`;
+        });
+      }
+      $('#all-user-posts').append(htmlString);
+    }
+    function getFollowers(){
+      let htmlString = "";
+      if(userData.followed_relationships == ""){
+        htmlString += `<div class="alert alert-info text-center"><p>This user has no followers yet.</p></div>`;
+      }
+      else{
+        userData.followed_relationships.forEach(function(userInfo){
+          htmlString += `
+                        <div class="row"
+                          <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1">
+                            <div class="panel panel-success">
+                              <div class="panel-body">
+                                <a href="/users/${userInfo["user"]["id"]}">
+                                  <div class="row follow_pic_small">
+                                    <img class="col-xs-4" src=${userInfo["user"]["photo"]["url"] == null ? "https://goo.gl/2wWxZy" : userInfo["user"]["photo"]["url"]}><p class="col-xs-4">${userInfo["user"]["name"]}</p>
+                                  </div>
+                                </a>
+                              </div>
+                            </div>
+                          </div
+                        </div>`;
+        });
+      }
+      $('#all-user-posts').append(htmlString);
     }
   });
 </script>
