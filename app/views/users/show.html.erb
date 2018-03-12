@@ -3,7 +3,11 @@
   <div class="row text-center">
 
     <div class="col-sm-3">
-      <%= cl_image_tag @user.photo, class: 'prof_pic' %>
+      <% if @user.photo? %>
+        <%= cl_image_tag @user.photo, class: 'prof_pic' %>
+      <% else %>
+        <%= image_tag "https://goo.gl/2wWxZy", class: 'prof_pic' %>
+      <% end %>
     </div>
 
     <div class="col-sm-3"></div>
@@ -110,19 +114,19 @@
       else{
         userData.followed_relationships.forEach(function(userInfo){
           htmlString += `
-                        <div class="row"
-                          <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1">
-                            <div class="panel panel-success">
-                              <div class="panel-body">
-                                <a href="/users/${userInfo["user"]["id"]}">
-                                  <div class="row follow_pic_small">
-                                    <img class="col-xs-4" src=${userInfo["user"]["photo"]["url"] == null ? "https://goo.gl/2wWxZy" : userInfo["user"]["photo"]["url"]}><p class="col-xs-4">${userInfo["user"]["name"]}</p>
-                                  </div>
-                                </a>
+                        <div class="row">
+                            <div class="col-xs-10 col-sm-8 col-sm-offset-2 col-xs-offset-1">
+                              <div class="panel panel-success">
+                                <div class="panel-body">
+                                  <a href="/users/${userInfo["user"]["id"]}">
+                                    <div class="row follow_pic_small">
+                                      <img class="col-xs-4" src=${userInfo["user"]["photo"]["url"] == null ? "https://goo.gl/2wWxZy" : userInfo["user"]["photo"]["url"]}><p class="col-xs-4">${userInfo["user"]["name"]}</p>
+                                    </div>
+                                  </a>
+                                </div>
                               </div>
                             </div>
-                          </div
-                        </div>`;
+                          </div>`;
         });
       }
       $('#all-user-posts').append(htmlString);
