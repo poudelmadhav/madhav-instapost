@@ -54,6 +54,7 @@ gem 'font-awesome-sass', '~> 4.6.2'
 
 # Use Pagination
 gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Use simplified pagination
 gem 'kaminari'
