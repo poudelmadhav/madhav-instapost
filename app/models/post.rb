@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 	mount_uploader :photo, PhotoUploader
 
-	self.per_page = 3
+	self.per_page = 5
 
 	belongs_to :user
 	
