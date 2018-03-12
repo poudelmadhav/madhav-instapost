@@ -7,10 +7,10 @@
 	<% end %>
 	</div>
 <% end %>
-<ul class="user-stats">
+<ul class="user-stats count">
   <li id="user-posts">
-    <div class="number-label count"><%= "Post".pluralize(@user.posts.count) %></div>
-    <div class="number-value count"><%= @user.posts.count %></div>
+    <div class="number-label"><%= "Post".pluralize(@user.posts.count) %></div>
+    <div class="number-value"><%= @user.posts.count %></div>
   </li>
   <li id="user-followers">
     <div class="number-label"><%= "Follower".pluralize(@user.followed_relationships.count) %></div>
