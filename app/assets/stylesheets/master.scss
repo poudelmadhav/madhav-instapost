@@ -4,12 +4,6 @@ body {
   background-color: #FAFAFA;
 }
 
-nav {
-  border-bottom: 1px solid #dbdbdb;
-  background-color: #ffffff;
-  height: 76px;
-}
-
 .navbar-default {
   background-color: #ffffff;
   border-bottom: 1px solid #dbdbdb;
@@ -32,21 +26,6 @@ nav {
 .head-size {
   font-size: 28px;
   vertical-align: middle;  
-}
-
-.nav_links {
-  vertical-align: middle;
-  font-size: 16px;
-  font-weight: 500;
-  margin: 0 20px;
-}
-
-.nav_links a {
-  text-decoration: none;
-}
-
-.nav_wrapper {
-  line-height: 78px;
 }
 
 .photo {
@@ -161,7 +140,7 @@ a:hover, a:focus {
 }
  
 html, body {
-  height: 97%;
+  height: 100%;
 }
 
 .post_like {
