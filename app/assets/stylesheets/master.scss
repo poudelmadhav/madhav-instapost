@@ -10,6 +10,15 @@ nav {
   height: 76px;
 }
 
+.navbar-default {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.navbar {
+  min-height: 78px;
+  padding: 12px;
+}
 .brand {
   font-family: 'Satisfy', cursive;
   font-size: 28px;
