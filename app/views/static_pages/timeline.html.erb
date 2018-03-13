@@ -31,7 +31,7 @@
       container.empty();
       //check if the API responds back with an error i.e. no data found.
       if (data["posts"].length == 0) {
-        htmlString = `<div class="alert alert-danger text-center" role="alert">The user you are following has no any post!</div>`
+        htmlString = `<div class="alert alert-danger text-center" role="alert">You have not followed any users. OR the user you are following has no post yet!</div>`
       } else {
 	        data["posts"].forEach(function(post){
 	          htmlString += `
