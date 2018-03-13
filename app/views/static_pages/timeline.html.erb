@@ -1,0 +1,54 @@
+<% if user_signed_in? %>
+  <h1 class="text-center">Timeline</h1>
+<% else %>
+  <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Please <a href="/users/sign_in" class="alert-link">sign in</a> or <a href="/users/sign_up" class="alert-link">sign up</a> to see the post of the users who follow here!
+  </div>
+<% end %>
+
+<div id="timeline-posts">
+</div>
+
+<script type="text/javascript">
+  $(function(){
+  	$.ajax({
+      url: '/user/timeline.json',
+      type: 'GET'
+    })
+    .done(function(data){
+      displayPosts(data);
+    });
+
+    function displayPosts(data){
+      let container = $("#timeline-posts");
+      let htmlString = "";
+
+      //insert panel
+      htmlString += `<div class="panel panel-danger">
+      					<div class="panel-body">`;
+
+      container.empty();
+      //check if the API responds back with an error i.e. no data found.
+      if (data["posts"].length == 0) {
+        htmlString = `<div class="alert alert-danger text-center" role="alert">The user you are following has no any post!</div>`
+      } else {
+	        data["posts"].forEach(function(post){
+	          htmlString += `
+	          				<div class="row">
+		          				<div class="col-xs-12 col-sm-9">
+		                        	<p><a href="users/${post["user"]["id"]}">${post["user"]["name"]}</a> has added <a href="posts/${post["id"]}">a post</a>.</p>
+		                        </div>
+		                        <img class="full-width" src=${post["post_photo"]["url"]}>
+		                    </div><hr>
+	                        `
+	        });
+	    }
+	    // close panel
+	    htmlString += `
+	    			</div>
+	    		</div>`;
+	    container.append(htmlString);
+  	}
+  });
+</script>

@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :users, only: :show
 
+  get "timeline" => "static_pages#timeline"
+  get 'user/timeline', to: 'users#timeline' # for timeline.json
+
   resources :follows, only: [:create, :destroy] 
 
   resources :posts do
@@ -13,5 +16,5 @@ Rails.application.routes.draw do
   	resources :downvotes, only: :create
   end
 
-  root 'posts#index'  
+  root 'posts#index' 
 end
