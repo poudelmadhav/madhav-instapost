@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :follows, only: [:create, :destroy] 
 
+  resources :notifications
+
   resources :posts do
   	resources :comments
   	resources :upvotes, only: :create
