@@ -39,6 +39,7 @@
 		          				<div class="col-xs-12">
 		                      <p>
                             <a href="users/${post["user"]["id"]}">${post["user"]["name"]}</a> has added <a href="posts/${post["id"]}">a post</a>.
+                            <span class="timestamp pull-right">${post["post_created_at"]} ago</span>
                           </p>
 		                  </div>
 		                  <img class="full-width" src=${post["post_photo"]["url"]}>
