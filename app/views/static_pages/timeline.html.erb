@@ -36,11 +36,13 @@
 	        data["posts"].forEach(function(post){
 	          htmlString += `
 	          				<div class="row">
-		          				<div class="col-xs-12 col-sm-9">
-		                        	<p><a href="users/${post["user"]["id"]}">${post["user"]["name"]}</a> has added <a href="posts/${post["id"]}">a post</a>.</p>
-		                        </div>
-		                        <img class="full-width" src=${post["post_photo"]["url"]}>
-		                    </div><hr>
+		          				<div class="col-xs-12">
+		                      <p>
+                            <a href="users/${post["user"]["id"]}">${post["user"]["name"]}</a> has added <a href="posts/${post["id"]}">a post</a>.
+                          </p>
+		                  </div>
+		                  <img class="full-width" src=${post["post_photo"]["url"]}>
+		                </div><hr>
 	                        `
 	        });
 	    }
