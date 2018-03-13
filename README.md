@@ -1,27 +1,6 @@
-# README
+# Madhav Instapost
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is an web app developed through Ruby on Rails hosted on heroku. This a kind of clonig like instagram where you can add posts, follow users, like other people posts, and many more...
 
 The app is published at:
 http://madhav-instapost.herokuapp.com/
