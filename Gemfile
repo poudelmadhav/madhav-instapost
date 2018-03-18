@@ -66,6 +66,9 @@ gem 'thin'
 # Jquery file upload
 gem "jquery-fileupload-rails"
 
+# for encryption of sensitive data
+gem 'figaro'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
