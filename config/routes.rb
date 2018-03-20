@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   resources :follows, only: [:create, :destroy] 
 
-  resources :notifications
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
 
   resources :posts do
   	resources :comments

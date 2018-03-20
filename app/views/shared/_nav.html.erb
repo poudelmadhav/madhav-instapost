@@ -17,6 +17,12 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li class="dropdown" data-behavior="notifications">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-bell"></span><b class="caret"></b><span data-behavior="unread-count"></span></a>
+            <ul class="dropdown-menu" data-behavior="notification-items">
+              <!-- dropdown-item -->
+            </ul>
+          </li>
           <li><%= link_to ' New Post', new_post_path, class: 'fa fa-pencil-square-o' %></li>
           <li><%= link_to "Timeline", timeline_path %></li>
           <% if !current_page?(user_path(current_user.id)) %>
