@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
   
+  # notification
+  has_many :notifications, foreign_key: :recipient_id
+
   has_many :posts
 
   has_many :comments

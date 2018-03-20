@@ -4,7 +4,7 @@ class FollowsController < ApplicationController
 
 	def create
 		current_user.follow(@user)
-
+		Notification.create(recipient: @user, actor: current_user, action: 'followed', notifiable: @follows)
 		respond_to do |format|
             format.html { redirect_to user_path(@user.id) }
             format.js {}
