@@ -15,15 +15,15 @@ class User < ApplicationRecord
 
   acts_as_voter
 
-  has_many :following_relationships, class_name:  "Follow", foreign_key: "follower_id", dependent: :destroy
-  has_many :followed_relationships, class_name:  "Follow", foreign_key: "followed_id", dependent: :destroy
+  has_many :following_relationships, -> { Follow.where(active: true) }, class_name:  "Follow", foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_relationships, -> { Follow.where(active: true) }, class_name:  "Follow", foreign_key: "followed_id", dependent: :destroy
 
   has_many :following_users, -> { Follow.where(active: true) }, through: :following_relationships, source: :followed
   has_many :followed_users, -> { Follow.where(active: true) }, through: :followed_relationships, source: :follower
 
   # follow user
   def follow(other_user)
-    relationship = following_relationships.where(followed_id: other_user.id, follower_id: self.id ).first
+    relationship = Follow.where(followed_id: other_user.id, follower_id: self.id ).first
     if relationship.present?
       relationship.update(active: true) 
     else
@@ -34,13 +34,14 @@ class User < ApplicationRecord
 
   # unfollow user
   def unfollow(other_user)
-    relationship = following_relationships.where(followed_id: other_user.id, follower_id: self.id)
+    relationship = Follow.where(followed_id: other_user.id, follower_id: self.id)
     relationship.update(active: false) if relationship.present?
     # following_relationships.find_by(followed_id: other_user.id).destroy
   end
 
   # Returns true if the current user is following that user
   def following?(user)
-    following_relationships.exists?(followed_id: user.id, follower_id: self.id, active: true)
+    Follow.exists?(followed_id: user.id, follower_id: self.id, active: true)
+    # following_relationships.exists?(followed_id: user.id)
   end
 end
