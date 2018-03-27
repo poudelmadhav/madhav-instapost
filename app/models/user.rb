@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many :following_users, -> { Follow.where(active: true) }, through: :following_relationships, source: :followed
   has_many :followed_users, -> { Follow.where(active: true) }, through: :followed_relationships, source: :follower
 
+  # follow user
   def follow(other_user)
     relationship = following_relationships.where(followed_id: other_user.id, follower_id: self.id ).first
     if relationship.present?
@@ -31,12 +32,14 @@ class User < ApplicationRecord
     end
   end
 
+  # unfollow user
   def unfollow(other_user)
     relationship = following_relationships.where(followed_id: other_user.id, follower_id: self.id)
     relationship.update(active: false) if relationship.present?
     # following_relationships.find_by(followed_id: other_user.id).destroy
   end
 
+  # Returns true if the current user is following that user
   def following?(user)
     following_relationships.exists?(followed_id: user.id, follower_id: self.id, active: true)
   end
