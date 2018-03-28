@@ -19,7 +19,7 @@
         <% if user_signed_in? %>
           <li><%= link_to ' New Post', new_post_path, class: 'fa fa-pencil-square-o' %></li>
           <li class="dropdown" data-behavior="notifications">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-bell"></span><b class="caret"></b><span data-behavior="unread-count"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-bell"></span><span data-behavior="unread-count"></span><b class="caret"></b></a>
             <ul class="dropdown-menu" data-behavior="notification-items">
               <!-- dropdown-item -->
             </ul>
