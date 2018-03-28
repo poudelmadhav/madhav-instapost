@@ -69,6 +69,9 @@ gem "jquery-fileupload-rails"
 # for encryption of sensitive data
 gem 'figaro'
 
+# style the data confirm modal
+gem 'data-confirm-modal'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
