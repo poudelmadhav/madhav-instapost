@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.7'
 
 # Use user authetication
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin'
 gem 'devise'
 gem 'inherited_resources', '~> 1.7'
 
