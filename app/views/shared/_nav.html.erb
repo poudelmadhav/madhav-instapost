@@ -31,11 +31,14 @@
                   <%= cl_image_tag current_user.photo, alt: current_user.name.split[0], title: current_user.name %>
                 </span>
               <% else %>
-                <<%= current_user.name.split[0] %>
+                <span class="header_pic_small">
+                  <%= image_tag "https://goo.gl/2wWxZy" %>
+                </span>
               <% end %>
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+              <li class="dropdown-header"><%= current_user.name %></li>
               <li><%= link_to 'Admin Area', admin_root_path if current_user.admin? %></li>
               <li><%= link_to "Timeline", timeline_path %></li>
               <li><%= link_to 'Profile', user_path(current_user.id) %></li>
