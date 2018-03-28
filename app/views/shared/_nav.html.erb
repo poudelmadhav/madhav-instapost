@@ -17,6 +17,7 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li><%= link_to 'Admin Area', admin_root_path if current_user.admin? %></li>
           <li><%= link_to ' New Post', new_post_path, class: 'fa fa-pencil-square-o' %></li>
           <li><%= link_to "Timeline", timeline_path %></li>
           <li class="dropdown" data-behavior="notifications">
@@ -36,10 +37,10 @@
                   <<%= current_user.name.split[0] %>
                 <% end %>
               <% end %>
-              </li>
-            <% else %>
-              <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
-            <% end %>
+            </li>
+          <% else %>
+            <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+          <% end %>
         <% else %>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <li><%= link_to 'Log In', new_user_session_path %></li>

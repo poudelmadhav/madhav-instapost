@@ -15,6 +15,7 @@ permit_params :name, :email, :password, :password_confirmation, :photo, :admin
 
 	filter :email
 	filter :name
+	filter :admin
 
 	index do
 	  selectable_column
