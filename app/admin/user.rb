@@ -24,6 +24,7 @@ permit_params :name, :email, :password, :password_confirmation, :photo
 	  	cl_image_tag(prof_pic.photo)
 	  end
 	  column :email
+	  column :admin
 	  column :sign_in_count
 	  column :created_at
 	  column :current_sign_in_at
@@ -31,12 +32,13 @@ permit_params :name, :email, :password, :password_confirmation, :photo
 	end
 
 	form do |f|
-		f.inputs "Admin Details" do
+		f.inputs "User Details" do
 	      f.input :name
 	      f.input :email
 	      f.input :password
 	      f.input :password_confirmation
 	      f.input :photo, :label => 'Profile Picture'
+	      f.input :admin
 	    end
 	    f.actions
 	end
