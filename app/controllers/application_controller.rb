@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   def authenticate_admin!
 	redirect_to new_user_session_path unless current_user.admin?
   end
+
+  before_action :set_notifications, if: :user_signed_in?
+
+  def set_notifications
+    @notifications = Notification.where(recipient: current_user).recent
+  end
   
   protected
 

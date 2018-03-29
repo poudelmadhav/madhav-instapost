@@ -1,0 +1,3 @@
+<li><%= link_to user_path(notification.actor), class: "dropdown-item #{"unread" if !notification.read_at?}" do %>
+  <%= notification.actor.name %> <%= notification.action %>ed you.
+<% end %></li>

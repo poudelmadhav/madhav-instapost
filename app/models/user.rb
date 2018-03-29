@@ -28,7 +28,7 @@ class User < ApplicationRecord
       relationship.update(active: true) 
     else
       following_relationships.create(followed_id: other_user.id)
-      Notification.create(recipient: other_user, actor: self, action: 'followed you.', notifiable: other_user)
+      Notification.create(recipient: other_user, actor: self, action: 'follow', notifiable: other_user)
     end
   end
 

@@ -18,7 +18,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><%= link_to ' New Post', new_post_path, class: 'fa fa-pencil-square-o' %></li>
-          <li class="dropdown" data-behavior="notifications">
+          <li class="dropdown" data-behavior="notifications" data-notifications='<%= render template: "notifications/index", formats: [:json] %>'>
             <a href="#" class="dropdown-toggle" data-behavior="notifications-link" data-toggle="dropdown"><span class="glyphicon glyphicon-bell"></span><span data-behavior="unread-count"></span><b class="caret"></b></a>
             <ul class="dropdown-menu" data-behavior="notification-items">
               <!-- dropdown-item -->

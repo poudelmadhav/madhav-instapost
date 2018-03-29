@@ -1,10 +1,16 @@
 class Notifications
     constructor: ->
         @notifications = $("[data-behavior='notifications']")
-        @setup() if @notifications.length > 0 
 
-    setup: ->
-        $("[data-behavior='notifications-link']").on "click", @handleClick
+        if @notifications.length > 0
+          @handleSuccess @notifications.data("notifications")
+          $("[data-behavior='notifications-link']").on "click", @handleClick
+
+          setInterval (=>
+            @getNewNotifications()
+          ), 5000
+
+    getNewNotifications: ->
         $.ajax(
           url: "/notifications.json"
           dataType: "JSON"
@@ -23,9 +29,14 @@ class Notifications
 
     handleSuccess: (data) =>
         items = $.map data, (notification) ->
-            "<li><a class='dropdown-item' href='/users/#{notification.actor.id}'>#{notification.actor.name} #{notification.action}<a></li>"
+            notification.template
 
-        $("[data-behavior='unread-count']").text(items.length)
+        unread_count = 0
+        $.each data, (i, notification) ->
+          if notification.unread
+            unread_count += 1
+
+        $("[data-behavior='unread-count']").text(unread_count)
         $("[data-behavior='notification-items']").html(items)
 
 jQuery ->
