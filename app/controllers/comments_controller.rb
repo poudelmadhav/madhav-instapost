@@ -5,8 +5,11 @@ class CommentsController < ApplicationController
 	def create
 	  @post = Post.find(params[:post_id])
 	  @comment = @post.comments.create(comment_params.merge(user_id: current_user.id))
-	  # Notification.create(recipient: @user, actor: current_user, action: 'commented', notifiable: @posts)
-      Notification.create(recipient: @post.user, actor: current_user, action: "comment", notifiable: @comment)
+	  
+	  # create notifications
+	  (@post.users.uniq - [current_user]).each do |user|
+        Notification.create(recipient: user, actor: current_user, action: "comment", notifiable: @comment)
+      end
 
 	  respond_to do |format|
 		  format.html { redirect_to posts_path }
