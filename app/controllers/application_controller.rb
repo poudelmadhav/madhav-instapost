@@ -2,12 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_notifications, if: :user_signed_in?
   
   def authenticate_admin!
 	redirect_to new_user_session_path unless current_user.admin?
   end
-
-  before_action :set_notifications, if: :user_signed_in?
 
   def set_notifications
     @notifications = Notification.where(recipient: current_user).recent
