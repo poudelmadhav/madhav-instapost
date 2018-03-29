@@ -15,7 +15,6 @@ class Notifications
     handleClick: (e) =>
         $.ajax(
           url: "/notifications/mark_as_read"
-          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
           dataType: "JSON"
           method: "POST"
           success: ->
