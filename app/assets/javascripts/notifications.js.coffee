@@ -29,7 +29,7 @@ class Notifications
 
     handleSuccess: (data) =>
         items = $.map data, (notification) ->
-            notification.template
+          notification.template
 
         unread_count = 0
         $.each data, (i, notification) ->
@@ -40,7 +40,7 @@ class Notifications
           $("[data-behavior='unread-count']").text('')
         else
           $("[data-behavior='unread-count']").text(unread_count)
-        $("[data-behavior='notification-items']").html(items)
+          $("[data-behavior='notification-items']").html(items)
 
 jQuery ->
     new Notifications
