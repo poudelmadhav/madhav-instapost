@@ -1,4 +1,4 @@
-json.array! @notifications do |notification| 
+json.array! @recent_notifications do |notification| 
     # json.recipient notification.recipient 
     json.id notification.id
     json.unread !notification.read_at?

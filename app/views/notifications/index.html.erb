@@ -1,1 +1,18 @@
-<h1>Notifications</h1>
+<div class="col-sm-8 col-sm-offset-2">
+	<h1>Notifications</h1>
+	<div class="all-notification">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<% @notifications.each do |notification| %>
+					<%= render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: {notification: notification} %>
+				<hr>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+<style type="text/css">
+	.all-notification li {
+		list-style: none;
+	}
+</style>
