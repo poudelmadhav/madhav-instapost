@@ -6,7 +6,9 @@ class UpvotesController < ApplicationController
 		 @post.liked_by current_user
 
 		 # create notification
-		 Notification.create(recipient: @post.user, actor: current_user, action: "like", notifiable: @post)
+		 if @post.user != current_user
+		 	Notification.create(recipient: @post.user, actor: current_user, action: "like", notifiable: @post)
+		 end
 
 		 respond_to do |format|
 		  format.html { redirect_to posts_path }
