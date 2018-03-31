@@ -7,12 +7,10 @@
 					<%= render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: {notification: notification} %>
 				<hr>
 				<% end %>
+				<div class = "text-center">
+				  <%= will_paginate @notifications %>
+				</div>
 			</div>
 		</div>
 	</div>
-
-<style type="text/css">
-	.all-notification li {
-		list-style: none;
-	}
-</style>
+</div>

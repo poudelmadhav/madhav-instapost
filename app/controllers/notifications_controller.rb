@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	
 	def index
-		@notifications = Notification.where(recipient: current_user).order(created_at: :desc)
+		@notifications = Notification.where(recipient: current_user).order(created_at: :desc).paginate(page: params[:page])
 		@recent_notifications = Notification.where(recipient: current_user).recent
 	end
 

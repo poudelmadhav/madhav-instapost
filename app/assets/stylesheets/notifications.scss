@@ -4,3 +4,8 @@
   border-left: 3px solid red;
   padding: 0.5em 10px;
 }
+
+/* list style none for all notification page */
+.all-notification li {
+	list-style: none;
+}
