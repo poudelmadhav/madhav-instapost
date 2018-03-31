@@ -7,7 +7,7 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   
   # notification
-  has_many :notifications, foreign_key: :recipient_id
+  has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
 
   has_many :posts
 
