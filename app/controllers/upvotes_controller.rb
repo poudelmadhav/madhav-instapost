@@ -5,6 +5,9 @@ class UpvotesController < ApplicationController
 		 @post = Post.find(params[:post_id])
 		 @post.liked_by current_user
 
+		 # create notification
+		 Notification.create(recipient: @post.user, actor: current_user, action: "like", notifiable: @post)
+
 		 respond_to do |format|
 		  format.html { redirect_to posts_path }
 		  format.js {}
