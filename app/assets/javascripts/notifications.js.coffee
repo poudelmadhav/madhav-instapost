@@ -40,7 +40,8 @@ class Notifications
           $("[data-behavior='unread-count']").text('')
         else
           $("[data-behavior='unread-count']").text(unread_count)
-          
+
+        items.push("<li class='text-center'><a href='/notifications'>See all notifications</a></li>")      
         $("[data-behavior='notification-items']").html(items)
 
 jQuery ->
