@@ -42,7 +42,13 @@ class Notifications
         else
           $("[data-behavior='unread-count']").text(unread_count)
 
-        items.push("<li class='text-center'><a href='/notifications'>See all notifications</a></li>")      
+        # for showing all notification link
+        items.push("<li class='text-center'><a href='/notifications'><strong>See all notifications</strong></a></li>")
+
+        # for the title notificatiion in notification panel
+        items.unshift("<li><a href=''><strong>Notications</strong></a></li><li class='divider'></li>")
+
+        # render all notifications   
         $("[data-behavior='notification-items']").html(items)
 
 jQuery ->
