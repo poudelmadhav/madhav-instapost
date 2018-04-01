@@ -46,7 +46,7 @@ class Notifications
         items.push("<li class='text-center'><a href='/notifications'><strong>See all notifications</strong></a></li>")
 
         # for the title notificatiion in notification panel
-        items.unshift("<li><a href=''><strong>Notications</strong></a></li><li class='divider'></li>")
+        items.unshift("<li><a href='/notifications'><strong>Notications</strong></a></li><li class='divider'></li>")
 
         # render all notifications   
         $("[data-behavior='notification-items']").html(items)
