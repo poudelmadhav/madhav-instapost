@@ -1,4 +1,4 @@
-<li class="<%= "dropdown-item #{"unread" if !notification.read_at?}" %>"><%= link_to post_path(notification.notifiable.id, anchor: dom_id(notification.notifiable)), class: "dropdown-item" do %>
+<li class="<%= "dropdown-item #{"unread" if !notification.read_at?}" %>"><%= link_to post_path(notification.notifiable.id), class: "dropdown-item" do %>
   <%= notification.actor.name %> <%= notification.action %>d your post.<br>
   <span class="timestamp"><%= distance_of_time_in_words(DateTime.now, notification.created_at) %> ago</span>
   <!--  <%= notification.notifiable_type.underscore.humanize.downcase %> -->
