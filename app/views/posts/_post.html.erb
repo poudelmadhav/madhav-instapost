@@ -23,7 +23,7 @@
     <% end %>
   </div>
   <!-- comment section -->
-  <span id="comments_container_<%= post.id %>">
-    <%= render partial: 'comments', locals: {post: post} %>
+  <span id="post_comments_container_<%= post.id %>">
+    <%= render partial: 'post_comments', locals: {post: post} %>
   </span>
 </div>

@@ -5,9 +5,9 @@ class Post < ApplicationRecord
 
 	belongs_to :user
 	
-	has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
+	has_many :post_comments, -> { order(created_at: :desc) }, dependent: :destroy
 
-	has_many :users, through: :comments
+	has_many :users, through: :post_comments
 
 	validates :description, :user_id, presence: true
 

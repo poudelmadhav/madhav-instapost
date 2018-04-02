@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-  	resources :comments
+  	resources :post_comments
   	resources :upvotes, only: :create
   	resources :downvotes, only: :create
   end

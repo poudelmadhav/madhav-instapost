@@ -1,0 +1,21 @@
+<div class="post_comments row">
+<% post.post_comments.each do |comment| %>
+  <span id="comment_<%= comment.id %>">
+    <%= link_to comment.user_name, user_path(comment.user_id) %> <%= comment.text %>
+    <%if comment.user == current_user %>
+      <%= link_to '', post_post_comment_path(post_id: post.id, id: comment.id), remote: true, method: :delete, title: 'Delete Comment', class: 'cmt-del-btn glyphicon glyphicon-remove', data: { title: "Are you sure?", confirm: "Your comment will be deleted. This cannot be undone." } %>
+  </span>
+  <% end %>
+
+  <br>
+  
+<% end %>
+
+<% if user_signed_in? %>
+  <hr>
+  <%= simple_form_for PostComment.new, url: post_post_comments_path(post), remote: true, method: :post do |f| %>
+    <%= f.input :text, label: 'Comment', placeholder: 'Add a comment...' %>
+    <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+  <% end %>
+<% end %>
+</div>

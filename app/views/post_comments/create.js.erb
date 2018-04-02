@@ -1,0 +1,1 @@
+$('#post_comments_container_<%= @post.id %>').html("<%= escape_javascript render partial: '/posts/post_comments', locals: { post: @post } %>")
