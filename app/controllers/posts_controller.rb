@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 	  @posts = Post.order('created_at DESC').paginate(page: params[:page]).includes(:user, comments: :user)
 	  respond_to do |format|
 	      format.html
-	      format.js { render 'shared/post_page' }
+	      format.js
 	    end
 	end
 
