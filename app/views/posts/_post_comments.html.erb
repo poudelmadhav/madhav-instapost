@@ -4,11 +4,9 @@
     <%= link_to comment.user_name, user_path(comment.user_id) %> <%= comment.text %>
     <%if comment.user == current_user %>
       <%= link_to '', post_post_comment_path(post_id: post.id, id: comment.id), remote: true, method: :delete, title: 'Delete Comment', class: 'cmt-del-btn glyphicon glyphicon-remove', data: { title: "Are you sure?", confirm: "Your comment will be deleted. This cannot be undone." } %>
-  </span>
-  <% end %>
-
-  <br>
-  
+    <% end %>
+    <br> 
+  </span> 
 <% end %>
 
 <% if user_signed_in? %>
