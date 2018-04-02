@@ -4,6 +4,8 @@
 	</div><!-- my posts id -->
 
 	<div class = "text-center" id="infinite-scrolling">
-	  <%= will_paginate @posts %>
+	 	<% unless @posts.total_pages < 2 %>
+			<%= link_to 'Show More', posts_path(:page => 2), :remote => true, :id => 'show_more_link', :class => 'btn btn-default btn-lg btn-block' %>
+		<% end %>
 	</div>
 </div>
