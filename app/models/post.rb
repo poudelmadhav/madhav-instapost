@@ -14,4 +14,6 @@ class Post < ApplicationRecord
 	delegate :photo, :name, to: :user, prefix: true
 
 	acts_as_votable
+
+	has_many :notifications, as: :notifiable, dependent: :destroy
 end

@@ -6,4 +6,6 @@ class PostComment < ApplicationRecord
 	delegate :name, to: :user, prefix: true
 
 	validates :text, :user_id, :post_id, presence: true
+
+	has_many :notifications, as: :notifiable, dependent: :destroy
 end
