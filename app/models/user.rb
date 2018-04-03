@@ -9,9 +9,9 @@ class User < ApplicationRecord
   # notification
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
 
-  has_many :posts
+  has_many :posts, -> { order(created_at: :desc) }, dependent: :destroy
 
-  has_many :post_comments
+  has_many :post_comments, dependent: :destroy
 
   acts_as_voter
 
