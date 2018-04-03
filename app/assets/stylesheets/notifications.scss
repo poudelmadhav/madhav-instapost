@@ -9,3 +9,8 @@
 .all-notification li {
 	list-style: none;
 }
+
+/* bootstrap badge background color red for unread notification count */
+.nav-notify .badge {
+	background-color: #fa3e3e;
+}
