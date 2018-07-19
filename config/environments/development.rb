@@ -53,13 +53,16 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-   :address              => "smtp.gmail.com",
-   :port                 => 587,
-   :domain               => "mail.google.com",
+   :address              => "smtp.zoho.com",
+   :port                 => 465,
+   :domain               => "www.zoho.com",
    :user_name            => ENV['gmail_username'],
    :password             => ENV['gmail_password'],
    :authentication       => "plain",
-   :enable_starttls_auto => true
+   :enable_starttls_auto => true,
+   :tls                  => true,
+   :ssl                  => true
   }
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
