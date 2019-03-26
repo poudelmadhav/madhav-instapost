@@ -4,7 +4,7 @@
 
     <div class="col-sm-3">
       <% if @user.photo? %>
-        <%= cl_image_tag @user.photo, class: 'prof_pic' %>
+        <%= cl_image_tag @user.photo, :secure => true, class: 'prof_pic' %>
       <% else %>
         <%= image_tag "https://goo.gl/2wWxZy", class: 'prof_pic' %>
       <% end %>

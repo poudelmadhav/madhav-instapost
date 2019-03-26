@@ -9,7 +9,7 @@
       <%= f.input :email, required: true, autofocus: true %>
       <div  id="pictureInput" class="field mp-margin">
         <% if current_user.photo? %>
-          <span id="target-photo" class="header_pic_edit"><%= cl_image_tag current_user.photo, class: 'mp-margin' %></span><br>
+          <span id="target-photo" class="header_pic_edit"><%= cl_image_tag current_user.photo, :secure => true, class: 'mp-margin' %></span><br>
         <% end %>
         <%= f.input :photo, label: 'Profile Picture' %>
       </div>
