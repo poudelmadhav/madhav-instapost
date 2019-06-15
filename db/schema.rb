@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20180402125434) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "comments", id: :serial, force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_comments_on_user_id_and_post_id"
+  end
+
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"

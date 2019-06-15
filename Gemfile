@@ -72,6 +72,9 @@ gem 'figaro'
 # style the data confirm modal
 gem 'data-confirm-modal'
 
+# custom error pages
+gem 'exception_handler', '~> 0.8.0.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -83,6 +86,8 @@ gem 'data-confirm-modal'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'pry-rails'
+  gem 'better_errors'
 end
 
 group :development do
