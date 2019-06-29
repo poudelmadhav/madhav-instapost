@@ -12,7 +12,7 @@
 <% if user_signed_in? %>
   <hr>
   <%= simple_form_for PostComment.new, url: post_post_comments_path(post), remote: true, method: :post do |f| %>
-    <%= f.input :text, label: 'Comment', placeholder: 'Add a comment...' %>
+    <%= f.input :text, as: :string, label: 'Comment', placeholder: 'Add a comment...' %>
     <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
   <% end %>
 <% end %>
