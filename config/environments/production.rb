@@ -88,7 +88,16 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default :charset => "utf-8"
-  # SMTP settings for gmail
+  # SMTP settings for sendgrid
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV["username"],
+    :password => ENV["password"],
+    :domain => 'https://harakokhoi.herokuapp.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
   # config/initializers/mail.rb
   config.action_mailer.default_url_options = { :host => 'https://instapost.paudelmadhav.com.np' }
 end
