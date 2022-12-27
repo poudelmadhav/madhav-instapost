@@ -92,7 +92,7 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV["username"],
     :password => ENV["password"],
-    :domain => 'https://harakokhoi.herokuapp.com',
+    :domain => 'https://instapost.paudelmadhav.com.np',
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,

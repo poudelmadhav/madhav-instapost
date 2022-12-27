@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'Instapost <noreply@paudelmadhav.com.np>'
   layout 'mailer'
 end
