@@ -22,3 +22,8 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Env file
+.env
+.gitsecret/keys/random_seed
+!*.secret

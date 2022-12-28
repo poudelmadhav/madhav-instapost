@@ -102,6 +102,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.8.0)
     eventmachine (1.2.7)
     exception_handler (0.8.0.0)
@@ -313,6 +317,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   data-confirm-modal
   devise
+  dotenv-rails (~> 2.1, >= 2.1.1)
   exception_handler (~> 0.8.0.0)
   figaro
   font-awesome-sass (~> 4.6.2)
@@ -343,4 +348,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.0.1
+   2.4.1

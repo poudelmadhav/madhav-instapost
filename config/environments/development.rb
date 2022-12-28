@@ -50,8 +50,7 @@ Rails.application.configure do
   # Mail configration
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :smtp
-  # SMTP settings for gmail
+  # SMTP settings for sendgrid
   # config/initializers/mail.rb
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
