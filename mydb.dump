@@ -1,0 +1,865 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.1
+-- Dumped by pg_dump version 15.2 (Ubuntu 15.2-1.pgdg22.04+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: active_admin_comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.active_admin_comments (
+    id integer NOT NULL,
+    namespace character varying,
+    body text,
+    resource_id character varying NOT NULL,
+    resource_type character varying NOT NULL,
+    author_type character varying,
+    author_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.active_admin_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.active_admin_comments_id_seq OWNED BY public.active_admin_comments.id;
+
+
+--
+-- Name: admin_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.admin_users (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet
+);
+
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.admin_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.admin_users_id_seq OWNED BY public.admin_users.id;
+
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    post_id integer,
+    user_id integer,
+    text text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
+
+
+--
+-- Name: follows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.follows (
+    id bigint NOT NULL,
+    follower_id integer,
+    followed_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    active boolean DEFAULT true
+);
+
+
+--
+-- Name: follows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.follows_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: follows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.follows_id_seq OWNED BY public.follows.id;
+
+
+--
+-- Name: notifications; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.notifications (
+    id bigint NOT NULL,
+    recipient_id integer,
+    actor_id integer,
+    read_at timestamp without time zone,
+    action character varying,
+    notifiable_id integer,
+    notifiable_type character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.notifications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.notifications_id_seq OWNED BY public.notifications.id;
+
+
+--
+-- Name: post_comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.post_comments (
+    id integer NOT NULL,
+    post_id integer,
+    user_id integer,
+    text text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: post_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.post_comments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: post_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.post_comments_id_seq OWNED BY public.post_comments.id;
+
+
+--
+-- Name: posts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.posts (
+    id integer NOT NULL,
+    photo character varying,
+    description text,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.posts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.posts_id_seq OWNED BY public.posts.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    photo character varying,
+    admin boolean DEFAULT false NOT NULL
+);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: votes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.votes (
+    id integer NOT NULL,
+    votable_type character varying,
+    votable_id integer,
+    voter_type character varying,
+    voter_id integer,
+    vote_flag boolean,
+    vote_scope character varying,
+    vote_weight integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.votes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.votes_id_seq OWNED BY public.votes.id;
+
+
+--
+-- Name: active_admin_comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_admin_comments ALTER COLUMN id SET DEFAULT nextval('public.active_admin_comments_id_seq'::regclass);
+
+
+--
+-- Name: admin_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_users ALTER COLUMN id SET DEFAULT nextval('public.admin_users_id_seq'::regclass);
+
+
+--
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
+
+
+--
+-- Name: follows id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.follows ALTER COLUMN id SET DEFAULT nextval('public.follows_id_seq'::regclass);
+
+
+--
+-- Name: notifications id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notifications ALTER COLUMN id SET DEFAULT nextval('public.notifications_id_seq'::regclass);
+
+
+--
+-- Name: post_comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.post_comments ALTER COLUMN id SET DEFAULT nextval('public.post_comments_id_seq'::regclass);
+
+
+--
+-- Name: posts id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.posts ALTER COLUMN id SET DEFAULT nextval('public.posts_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: votes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.votes ALTER COLUMN id SET DEFAULT nextval('public.votes_id_seq'::regclass);
+
+
+--
+-- Data for Name: active_admin_comments; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.active_admin_comments (id, namespace, body, resource_id, resource_type, author_type, author_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: admin_users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.admin_users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip) FROM stdin;
+1	admin@madhav.com	$2a$11$SWwcmtQ8PcPinm8cIcFso.wpGGSE5v6WrTd0FIdZsfEIo3agtY.Fu	\N	\N	\N	5	2017-12-11 11:00:03.353981	2017-12-11 10:46:33.225613	49.244.75.125	49.244.75.125
+\.
+
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	production	2017-03-22 06:33:28.76627	2017-03-22 06:33:28.76627
+\.
+
+
+--
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.comments (id, post_id, user_id, text, created_at, updated_at) FROM stdin;
+1	1	1	Wow! What a nice place!	2017-03-22 06:40:55.840257	2017-03-22 06:40:55.840257
+45	19	1	Machhindranath ki - Jay!!!	2017-05-19 01:30:57.166864	2017-05-19 01:30:57.166864
+3	1	3	Nice school... :)	2017-03-22 13:28:07.692627	2017-03-22 13:28:07.692627
+47	13	1	What a nice party!!!	2017-12-11 10:50:09.104826	2017-12-11 10:50:09.104826
+48	13	1	Wow!	2017-12-11 10:50:18.315238	2017-12-11 10:50:18.315238
+49	13	1	Looks amazing!	2017-12-11 10:50:28.540856	2017-12-11 10:50:28.540856
+50	21	5	Damiz	2018-01-05 12:31:49.438315	2018-01-05 12:31:49.438315
+51	22	1	Nice photo!	2018-01-05 12:38:22.971315	2018-01-05 12:38:22.971315
+21	9	1	wow!	2017-04-04 10:10:10.258732	2017-04-04 10:10:10.258732
+22	12	3	wow.. nice!!!	2017-04-04 12:05:04.611855	2017-04-04 12:05:04.611855
+23	11	3	Nice jodi...	2017-04-04 12:05:20.355338	2017-04-04 12:05:20.355338
+24	9	3	looking handsome!!!	2017-04-04 12:05:37.977181	2017-04-04 12:05:37.977181
+25	1	1	Thank u sis...	2017-04-04 23:36:23.22571	2017-04-04 23:36:23.22571
+26	11	1	Vagwan Pani kati nirdayi Huda rahexan. Yeti ramro Jodi ni sadailai sath tutaidiya.... 😂	2017-04-04 23:38:11.341854	2017-04-04 23:38:11.341854
+27	12	1	Nice friendship!	2017-04-04 23:38:37.801105	2017-04-04 23:38:37.801105
+28	13	1	Photo looks amazing!	2017-04-04 23:38:57.023496	2017-04-04 23:38:57.023496
+30	14	3	Thanks for the knowledge...	2017-04-05 06:25:10.681616	2017-04-05 06:25:10.681616
+31	17	1	Photo chai sahi ho k...	2017-04-10 00:32:27.282102	2017-04-10 00:32:27.282102
+32	16	1	Missing those days so much...	2017-04-11 11:11:35.183245	2017-04-11 11:11:35.183245
+40	1	1	Really beautiful!	2017-04-12 03:28:49.631549	2017-04-12 03:28:49.631549
+41	1	4	Wow	2017-04-12 03:30:15.889538	2017-04-12 03:30:15.889538
+43	17	4	Dami mandir...	2017-04-12 17:04:59.796265	2017-04-12 17:04:59.796265
+\.
+
+
+--
+-- Data for Name: follows; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.follows (id, follower_id, followed_id, created_at, updated_at, active) FROM stdin;
+2	1	4	2018-02-21 10:22:23.763643	2018-02-21 10:22:23.763643	t
+3	1	3	2018-02-21 10:59:47.618147	2018-02-21 10:59:47.618147	t
+4	1	5	2018-02-21 11:03:44.557199	2022-12-28 16:35:13.032539	t
+5	5	5	2022-12-28 16:36:12.626164	2022-12-28 16:36:12.626164	t
+\.
+
+
+--
+-- Data for Name: notifications; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.notifications (id, recipient_id, actor_id, read_at, action, notifiable_id, notifiable_type, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: post_comments; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.post_comments (id, post_id, user_id, text, created_at, updated_at) FROM stdin;
+1	2	1	Awesome	2022-12-27 18:44:47.406824	2022-12-27 18:44:47.406824
+2	24	1	Awesome	2022-12-28 18:03:12.005678	2022-12-28 18:03:12.005678
+\.
+
+
+--
+-- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.posts (id, photo, description, user_id, created_at, updated_at) FROM stdin;
+18	image/upload/v1492762893/A_Rose_vcgofk.jpg	beautiful Rose captured by Nokia Asha 305, brothers first mobile	3	2017-04-21 08:21:33.846804	2017-04-21 08:21:33.846804
+19	image/upload/v1492778625/IMG_20170421_075102_qw0kvk.jpg	Pushing the types of Machhindranath on the road in front of Banglamukhi	4	2017-04-21 12:43:45.384254	2017-04-21 12:43:45.384254
+20	image/upload/v1493050425/Screenshot_2017-04-11-22-25-38-091_com.cnvcs.chess_n2u5bp.jpg	What a wonderful victory!!! Me as BLaCK HoPs	1	2017-04-24 16:13:45.263624	2017-04-24 16:14:44.096462
+22	image/upload/v1515155631/IMG_20180105_103929_njohf0.jpg	Krishna mandir	5	2018-01-05 12:33:51.521837	2018-01-05 12:33:51.521837
+1	image/upload/v1491292664/ttatlpzdplj9nujv3355.jpg	My first school, Shree Khadkeshwori Primary School	1	2017-03-22 06:36:15.989398	2017-04-04 07:57:44.468267
+11	image/upload/v1491292796/ywamsouqhhmyucnveyrb.jpg	Shree Krishna Sweta	1	2017-04-04 07:59:56.114225	2017-04-04 07:59:56.114225
+9	image/upload/v1491300502/nsc1fqo4nlyaeavvs8z1.jpg	Vina poz didai...	1	2017-04-01 05:49:29.707755	2017-04-04 10:08:21.813767
+12	image/upload/v1491307421/yqqzgclp7y52txc0dhxt.jpg	With friends.. fun...	3	2017-04-04 12:03:41.014727	2017-04-04 12:03:41.014727
+13	image/upload/v1491348926/bgvswu2xdimellmjdqaz.jpg	Having Lassi with my friend Bikash...	1	2017-04-04 23:35:26.598685	2017-04-04 23:35:26.598685
+14	image/upload/v1491363638/vz4hgde7lpujpxcqczkx.png	Ncell GPRS Setting	1	2017-04-05 03:40:38.543382	2017-04-05 03:40:38.543382
+16	image/upload/v1491637387/139_8558_s9vglp.jpg	A small memory of College last day at Pentagon	1	2017-04-08 07:43:07.345797	2017-04-08 07:43:07.345797
+17	image/upload/v1491783850/IMG_20170402_173809_HDR_x7hyw4.jpg	At Krishna Mandir with Madhav	4	2017-04-10 00:24:10.372359	2017-04-10 00:24:10.372359
+24	image/upload/v1672166672/2022-12-05-20h25m27-min_p77zqp.jpg	Me with office friends at a party	1	2022-12-28 17:52:03.831136	2022-12-28 17:52:03.831136
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.schema_migrations (version) FROM stdin;
+20170320115341
+20170320120527
+20170320124834
+20170321032554
+20170322040158
+20170328123027
+20170420110913
+20170420110917
+20180221085709
+20180221063440
+20180312164309
+20180327125554
+20180402125434
+20221227180807
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, name, created_at, updated_at, photo, admin) FROM stdin;
+2	blue.bee14.bs@gmail.com	$2a$11$HlxmmUoFwQGwu1md///N6e7F9exAgnh6grWe6BD4MxzM244REDFj.	\N	\N	\N	1	2017-03-22 07:05:45.416658	2017-03-22 07:05:45.416658	49.244.7.206	49.244.7.206	Bikash Shrestha	2017-03-22 07:05:45.408444	2017-03-22 07:05:45.419715	\N	f
+3	gangapoudel143@gmail.com	$2a$11$w9MmQjPR2e4LKTGwTe3Y6egPsQKg2DlfwEQkgyeW5cGinUyuoAV4a	a8f1e96140f2c74e75655a70fab150bec32cd135a25cb0f1c8265efcd1598623	2017-04-04 09:15:44.354592	\N	5	2017-04-21 08:19:14.233295	2017-04-05 04:23:28.273621	49.244.12.58	49.244.53.133	Ganga Poudel	2017-03-22 13:26:45.500612	2017-04-21 08:19:14.23594	image/upload/v1491307481/upt0ahgbrugixgoybzwo.jpg	f
+4	bikash@sthabikash.com.np	$2a$11$yRqPjV7iQr/z9EI/2zOUoOpSsPABRYqhSKjRR7Qy16w3GL9DVvtDq	\N	\N	\N	26	2017-04-24 16:12:16.945901	2017-04-24 16:12:16.145404	64.233.173.137	49.244.43.207	Bikash Shrestha	2017-04-10 00:20:01.069285	2017-04-24 16:12:29.846252	image/upload/v1491783601/IMG_20170219_201410_wp2ev2.jpg	f
+5	paudelasmita143@gmail.com	$2a$11$PyZ6EOUmic4nm92Is8yRi.6EWCyAsyE3MAnfD3UKEs53VlemjMfEO	\N	\N	\N	1	2018-01-05 12:31:06.061788	2018-01-05 12:31:06.061788	49.244.41.11	49.244.41.11	Asmita Paudel	2018-01-05 12:31:05.5024	2018-01-05 12:31:06.06562	image/upload/v1515155465/B612_20171215_143759_wckqf0.jpg	f
+1	poudelmadhav143@gmail.com	$2a$11$qCbYkRbkBcPCrARi1CObgOChwHEzhq0YMvCCEXKMx1M3p0eHr8hUK	7f2b4ed6a4c0e20f4da79afd6a145e318499647acddb0b6cf66956008daeb381	2022-12-28 16:40:08.761255	2022-12-28 17:49:22.64365	44	2022-12-29 03:55:28.318707	2022-12-28 17:49:22.659874	172.68.203.143	172.69.183.132	Madhav Paudel	2017-03-22 06:35:07.138051	2022-12-29 03:55:28.322137	image/upload/v1491292750/rq1rtpv9sqmmgz83afvh.jpg	t
+\.
+
+
+--
+-- Data for Name: votes; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.votes (id, votable_type, votable_id, voter_type, voter_id, vote_flag, vote_scope, vote_weight, created_at, updated_at) FROM stdin;
+1	Post	22	User	1	t	\N	1	2018-02-21 10:43:12.670814	2018-02-21 10:43:15.849062
+4	Post	1	User	1	t	\N	1	2018-02-21 10:59:31.777097	2018-02-21 10:59:31.777097
+5	Post	12	User	1	t	\N	1	2018-02-21 10:59:40.881468	2018-02-21 10:59:40.881468
+2	Post	20	User	1	t	\N	1	2018-02-21 10:43:21.76377	2018-02-21 11:03:13.058468
+6	Post	24	User	1	t	\N	1	2022-12-28 18:03:06.08619	2022-12-28 18:03:06.08619
+\.
+
+
+--
+-- Name: active_admin_comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.active_admin_comments_id_seq', 1, false);
+
+
+--
+-- Name: admin_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.admin_users_id_seq', 1, true);
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.comments_id_seq', 51, true);
+
+
+--
+-- Name: follows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.follows_id_seq', 5, true);
+
+
+--
+-- Name: notifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.notifications_id_seq', 1, false);
+
+
+--
+-- Name: post_comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.post_comments_id_seq', 2, true);
+
+
+--
+-- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.posts_id_seq', 24, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 5, true);
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.votes_id_seq', 6, true);
+
+
+--
+-- Name: active_admin_comments active_admin_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.active_admin_comments
+    ADD CONSTRAINT active_admin_comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: admin_users admin_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_users
+    ADD CONSTRAINT admin_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: follows follows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.follows
+    ADD CONSTRAINT follows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: notifications notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.notifications
+    ADD CONSTRAINT notifications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: post_comments post_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.post_comments
+    ADD CONSTRAINT post_comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posts posts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.posts
+    ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: votes votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.votes
+    ADD CONSTRAINT votes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_active_admin_comments_on_author_type_and_author_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_active_admin_comments_on_author_type_and_author_id ON public.active_admin_comments USING btree (author_type, author_id);
+
+
+--
+-- Name: index_active_admin_comments_on_namespace; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_active_admin_comments_on_namespace ON public.active_admin_comments USING btree (namespace);
+
+
+--
+-- Name: index_active_admin_comments_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_active_admin_comments_on_resource_type_and_resource_id ON public.active_admin_comments USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_admin_users_on_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_admin_users_on_email ON public.admin_users USING btree (email);
+
+
+--
+-- Name: index_admin_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_admin_users_on_reset_password_token ON public.admin_users USING btree (reset_password_token);
+
+
+--
+-- Name: index_comments_on_post_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_comments_on_post_id ON public.comments USING btree (post_id);
+
+
+--
+-- Name: index_comments_on_user_id_and_post_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_comments_on_user_id_and_post_id ON public.comments USING btree (user_id, post_id);
+
+
+--
+-- Name: index_follows_on_followed_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_follows_on_followed_id ON public.follows USING btree (followed_id);
+
+
+--
+-- Name: index_follows_on_follower_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_follows_on_follower_id ON public.follows USING btree (follower_id);
+
+
+--
+-- Name: index_follows_on_follower_id_and_followed_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_follows_on_follower_id_and_followed_id ON public.follows USING btree (follower_id, followed_id);
+
+
+--
+-- Name: index_post_comments_on_post_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_post_comments_on_post_id ON public.post_comments USING btree (post_id);
+
+
+--
+-- Name: index_post_comments_on_user_id_and_post_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_post_comments_on_user_id_and_post_id ON public.post_comments USING btree (user_id, post_id);
+
+
+--
+-- Name: index_posts_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_posts_on_user_id ON public.posts USING btree (user_id);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
+
+
+--
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
+
+
+--
+-- Name: index_votes_on_votable_id_and_votable_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_votes_on_votable_id_and_votable_type_and_vote_scope ON public.votes USING btree (votable_id, votable_type, vote_scope);
+
+
+--
+-- Name: index_votes_on_voter_id_and_voter_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_votes_on_voter_id_and_voter_type_and_vote_scope ON public.votes USING btree (voter_id, voter_type, vote_scope);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
