@@ -58,7 +58,7 @@ COPY --from=build /rails /rails
 ENV PATH=$PATH:/usr/local/node/bin
 
 RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails db log tmp
+    chown -R rails:rails db log tmp public/uploads
 USER rails:rails
 
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
