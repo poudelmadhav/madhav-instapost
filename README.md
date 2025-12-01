@@ -4,3 +4,6 @@ This is a web app developed through Ruby on Rails hosted on render. This is a ki
 
 The app is published at:
 https://instapost.paudelmadhav.com.np
+
+## Docker Setup
+For Docker setup instructions, see [DOCKER.md](DOCKER.md).
